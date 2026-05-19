@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>旋律灵感收纳盒 - 录音版</title>
+  <style>
+    :root {
+      --bg: #f6f4ef;
+      --card: #ffffff;
+      --text: #222222;
+      --muted: #777777;
+      --line: #e7e1d8;
+      --primary: #6f5cff;
+      --primary-dark: #5845dd;
+      --recording: #e35d5d;
+      --success: #2f9461;
+      --danger: #e35d5d;
+      --danger-bg: #fff1f1;
+      --tag-bg: #f1efff;
+      --tag-text: #5748c8;
+      --shadow: 0 12px 30px rgba(32, 24, 12, 0.08);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(111, 92, 255, 0.12), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(255, 193, 112, 0.16), transparent 34%),
+        var(--bg);
+      line-height: 1.6;
+    }
+
+    .page {
+      width: min(1040px, 100%);
+      margin: 0 auto;
+      padding: 32px 18px 48px;
+    }
+
+    .hero {
+      margin-bottom: 22px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 5vw, 44px);
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 390px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(231, 225, 216, 0.9);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .form-card {
+      padding: 20px;
+      position: sticky;
+      top: 18px;
+    }
+
+    .list-card {
+      padding: 20px;
+      min-height: 390px;
+    }
+
+    .section-title {
+      margin: 0 0 16px;
+      font-size: 18px;
+    }
+
+    label {
+      display: block;
+      margin: 14px 0 7px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      color: var(--text);
+      font: inherit;
+      outline: none;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    input,
+    select {
+      height: 46px;
+      padding: 0 13px;
+    }
+
+    textarea {
+      min-height: 92px;
+      padding: 12px 13px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(111, 92, 255, 0.12);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .recorder-box {
+      margin-top: 16px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.66);
+    }
+
+    .recorder-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .recorder-title strong {
+      font-size: 14px;
+    }
+
+    .status {
+      color: var(--muted);
+      font-size: 13px;
+      text-align: right;
+    }
+
+    .status.recording {
+      color: var(--recording);
+      font-weight: 800;
+    }
+
+    .record-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .small-btn,
+    .save-btn,
+    .secondary-btn {
+      border: 0;
+      border-radius: 15px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.15s ease, opacity 0.15s ease;
+    }
+
+    .small-btn:hover,
+    .save-btn:hover,
+    .secondary-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .small-btn:active,
+    .save-btn:active,
+    .secondary-btn:active {
+      transform: translateY(0);
+    }
+
+    .start-btn {
+      color: #fff;
+      background: var(--recording);
+    }
+
+    .stop-btn {
+      color: #fff;
+      background: #555;
+    }
+
+    .secondary-btn {
+      width: 100%;
+      margin-top: 10px;
+      color: var(--primary);
+      background: #f1efff;
+    }
+
+    .small-btn:disabled,
+    .save-btn:disabled,
+    .secondary-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.42;
+      transform: none;
+    }
+
+    .preview {
+      display: none;
+      margin-top: 12px;
+    }
+
+    audio {
+      width: 100%;
+      display: block;
+    }
+
+    .hint {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .save-btn {
+      width: 100%;
+      margin-top: 18px;
+      color: #fff;
+      background: var(--primary);
+    }
+
+    .save-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .error,
+    .success {
+      display: none;
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 14px;
+    }
+
+    .error {
+      color: #a93434;
+      background: var(--danger-bg);
+    }
+
+    .success {
+      color: #1f6f48;
+      background: #eefaf3;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .count {
+      color: var(--muted);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .record-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .record {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    .record-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .record-title {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .delete-btn {
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 999px;
+      padding: 7px 10px;
+      color: var(--danger);
+      background: var(--danger-bg);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .delete-btn:hover {
+      filter: brightness(0.97);
+    }
+
+    .note {
+      margin: 8px 0 12px;
+      color: #454545;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .record-audio {
+      margin: 12px 0;
+      padding: 10px;
+      border-radius: 14px;
+      background: #f8f7f4;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      color: var(--tag-text);
+      background: var(--tag-bg);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .time {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .empty {
+      padding: 52px 16px;
+      border: 1px dashed var(--line);
+      border-radius: 16px;
+      text-align: center;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.56);
+    }
+
+    .empty strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+      font-size: 17px;
+    }
+
+    .danger-note {
+      color: #a93434;
+      font-weight: 700;
+    }
+
+    @media (max-width: 860px) {
+      .page {
+        padding-top: 24px;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .form-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .row,
+      .record-buttons {
+        grid-template-columns: 1fr;
+      }
+
+      .toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .card {
+        border-radius: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <h1>旋律灵感收纳盒</h1>
+      <p>录下突然冒出来的旋律，再补上标题、标签和备注。</p>
+    </header>
+
+    <div class="layout">
+      <section class="card form-card" aria-labelledby="formTitle">
+        <h2 class="section-title" id="formTitle">记录一段新旋律</h2>
+
+        <form id="melodyForm">
+          <label for="title">旋律标题</label>
+          <input id="title" name="title" type="text" placeholder="例如：雨夜里的副歌动机" autocomplete="off" />
+
+          <label for="note">备注</label>
+          <textarea id="note" name="note" placeholder="写下旋律感觉、节奏、用途，或任何你怕忘记的细节。"></textarea>
+
+          <div class="row">
+            <div>
+              <label for="mood">心情标签</label>
+              <select id="mood" name="mood">
+                <option value="安静">安静</option>
+                <option value="伤感">伤感</option>
+                <option value="开心">开心</option>
+                <option value="热血">热血</option>
+                <option value="奇怪">奇怪</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="usage">用途标签</label>
+              <select id="usage" name="usage">
+                <option value="主歌">主歌</option>
+                <option value="副歌">副歌</option>
+                <option value="前奏">前奏</option>
+                <option value="游戏BGM">游戏BGM</option>
+                <option value="不确定">不确定</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="recorder-box">
+            <div class="recorder-title">
+              <strong>录音</strong>
+              <span class="status" id="recordStatus">尚未录音</span>
+            </div>
+
+            <div class="record-buttons">
+              <button class="small-btn start-btn" id="startRecordBtn" type="button">开始录音</button>
+              <button class="small-btn stop-btn" id="stopRecordBtn" type="button" disabled>停止录音</button>
+            </div>
+
+            <div class="preview" id="audioPreviewBox">
+              <label>本次录音预览</label>
+              <audio id="audioPreview" controls></audio>
+              <button class="secondary-btn" id="discardAudioBtn" type="button">丢弃本次录音</button>
+            </div>
+
+            <p class="hint">
+              首次录音时浏览器会请求麦克风权限。录音音频会存到本机浏览器 IndexedDB，刷新页面后仍然保留。
+            </p>
+            <p class="hint danger-note" id="secureHint" hidden>
+              录音需要 HTTPS 或 localhost。直接双击 HTML 文件时，浏览器可能会禁止麦克风。
+            </p>
+          </div>
+
+          <button class="save-btn" id="saveBtn" type="submit">保存灵感和录音</button>
+          <div class="error" id="errorBox">请先输入旋律标题。</div>
+          <div class="success" id="successBox">已保存。</div>
+        </form>
+      </section>
+
+      <section class="card list-card" aria-labelledby="listTitle">
+        <div class="toolbar">
+          <h2 class="section-title" id="listTitle">灵感列表</h2>
+          <div class="count" id="countText">共 0 条</div>
+        </div>
+
+        <div class="record-list" id="recordList"></div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const DB_NAME = "melody_inspiration_box_db";
+    const DB_VERSION = 1;
+    const STORE_NAME = "melody_records";
+
+    const form = document.querySelector("#melodyForm");
+    const titleInput = document.querySelector("#title");
+    const noteInput = document.querySelector("#note");
+    const moodSelect = document.querySelector("#mood");
+    const usageSelect = document.querySelector("#usage");
+    const startRecordBtn = document.querySelector("#startRecordBtn");
+    const stopRecordBtn = document.querySelector("#stopRecordBtn");
+    const discardAudioBtn = document.querySelector("#discardAudioBtn");
+    const recordStatus = document.querySelector("#recordStatus");
+    const audioPreviewBox = document.querySelector("#audioPreviewBox");
+    const audioPreview = document.querySelector("#audioPreview");
+    const recordList = document.querySelector("#recordList");
+    const countText = document.querySelector("#countText");
+    const errorBox = document.querySelector("#errorBox");
+    const successBox = document.querySelector("#successBox");
+    const secureHint = document.querySelector("#secureHint");
+    const saveBtn = document.querySelector("#saveBtn");
+
+    let db = null;
+    let records = [];
+    let mediaRecorder = null;
+    let audioChunks = [];
+    let currentAudioBlob = null;
+    let currentAudioUrl = "";
+    let currentAudioType = "";
+    let currentStream = null;
+    let recordStartedAt = 0;
+    let timerId = null;
+    let audioUrlMap = new Map();
+
+    let recorderMode = "";
+    let audioContext = null;
+    let sourceNode = null;
+    let processorNode = null;
+    let wavBuffers = [];
+    let wavSampleRate = 44100;
+    let wavRecording = false;
+
+    init();
+
+    async function init() {
+      checkRecorderSupport();
+
+      try {
+        db = await openDatabase();
+        records = await getAllRecords();
+        renderRecords();
+      } catch (error) {
+        console.error(error);
+        showError("初始化本地数据库失败。请确认浏览器没有禁用 IndexedDB。", false);
+      }
+
+      startRecordBtn.addEventListener("click", startRecording);
+      stopRecordBtn.addEventListener("click", stopRecording);
+      discardAudioBtn.addEventListener("click", discardCurrentAudio);
+      form.addEventListener("submit", saveCurrentRecord);
+      recordList.addEventListener("click", handleListClick);
+
+      window.addEventListener("beforeunload", function () {
+        stopTimer();
+        stopActiveRecorder();
+        stopMicrophone();
+        revokeAudioUrls();
+      });
+    }
+
+    function checkRecorderSupport() {
+      const hasModernGetUserMedia =
+        navigator.mediaDevices &&
+        typeof navigator.mediaDevices.getUserMedia === "function";
+
+      const hasLegacyGetUserMedia =
+        typeof navigator.getUserMedia === "function" ||
+        typeof navigator.webkitGetUserMedia === "function" ||
+        typeof navigator.mozGetUserMedia === "function" ||
+        typeof navigator.msGetUserMedia === "function";
+
+      const hasAnyRecorder =
+        typeof window.MediaRecorder === "function" ||
+        typeof window.AudioContext === "function" ||
+        typeof window.webkitAudioContext === "function";
+
+      if (typeof window.isSecureContext === "boolean" && !window.isSecureContext) {
+        secureHint.hidden = false;
+      }
+
+      if (!hasModernGetUserMedia && !hasLegacyGetUserMedia) {
+        recordStatus.textContent = "等待检测麦克风";
+        secureHint.hidden = false;
+        return;
+      }
+
+      if (!hasAnyRecorder) {
+        recordStatus.textContent = "当前浏览器录音兼容性较弱";
+        return;
+      }
+
+      recordStatus.textContent = "可以开始录音";
+    }
+
+    async function startRecording() {
+      hideMessage();
+
+      if (mediaRecorder || recorderMode === "wav") {
+        return;
+      }
+
+      try {
+        stopMicrophone();
+        discardCurrentAudio(false);
+
+        currentStream = await requestMicrophoneStream();
+        audioChunks = [];
+
+        const started = tryStartMediaRecorder(currentStream);
+        if (!started) {
+          await startWavRecorder(currentStream);
+        }
+
+        recordStartedAt = Date.now();
+        startTimer();
+
+        startRecordBtn.disabled = true;
+        stopRecordBtn.disabled = false;
+        recordStatus.textContent = "正在录音 00:00";
+        recordStatus.classList.add("recording");
+      } catch (error) {
+        console.error(error);
+        showError(getMicrophoneErrorMessage(error), false);
+        stopTimer();
+        stopActiveRecorder();
+        stopMicrophone();
+        resetRecordButtons();
+      }
+    }
+
+    function requestMicrophoneStream() {
+      const constraints = {
+        audio: {
+          echoCancellation: false,
+          noiseSuppression: false,
+          autoGainControl: false
+        }
+      };
+
+      if (navigator.mediaDevices && typeof navigator.mediaDevices.getUserMedia === "function") {
+        return navigator.mediaDevices.getUserMedia(constraints);
+      }
+
+      const legacyGetUserMedia =
+        navigator.getUserMedia ||
+        navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia ||
+        navigator.msGetUserMedia;
+
+      if (typeof legacyGetUserMedia === "function") {
+        return new Promise((resolve, reject) => {
+          legacyGetUserMedia.call(navigator, constraints, resolve, reject);
+        });
+      }
+
+      const error = new Error("当前浏览器没有开放麦克风 API");
+      error.name = "GetUserMediaUnsupported";
+      throw error;
+    }
+
+    function tryStartMediaRecorder(stream) {
+      if (typeof window.MediaRecorder !== "function") {
+        return false;
+      }
+
+      let recorder = null;
+      const options = getRecorderOptions();
+
+      try {
+        recorder = options ? new MediaRecorder(stream, options) : new MediaRecorder(stream);
+      } catch (error) {
+        console.warn("MediaRecorder 带参数创建失败，改用默认参数。", error);
+        try {
+          recorder = new MediaRecorder(stream);
+        } catch (secondError) {
+          console.warn("MediaRecorder 不可用，改用 WAV 兼容录音方案。", secondError);
+          return false;
+        }
+      }
+
+      mediaRecorder = recorder;
+      recorderMode = "mediaRecorder";
+
+      mediaRecorder.addEventListener("dataavailable", function (event) {
+        if (event.data && event.data.size > 0) {
+          audioChunks.push(event.data);
+        }
+      });
+
+      mediaRecorder.addEventListener("stop", handleMediaRecorderStop);
+      mediaRecorder.addEventListener("error", function (event) {
+        console.error(event.error);
+        showError("录音过程中出错，请重新尝试。", false);
+        stopTimer();
+        stopActiveRecorder();
+        stopMicrophone();
+        resetRecordButtons();
+      });
+
+      mediaRecorder.start(1000);
+      return true;
+    }
+
+    async function startWavRecorder(stream) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+
+      if (!AudioContextClass) {
+        const error = new Error("当前浏览器没有可用的录音编码器");
+        error.name = "RecorderUnsupported";
+        throw error;
+      }
+
+      audioContext = new AudioContextClass();
+
+      if (audioContext.state === "suspended") {
+        await audioContext.resume();
+      }
+
+      sourceNode = audioContext.createMediaStreamSource(stream);
+      processorNode = audioContext.createScriptProcessor(4096, 1, 1);
+      wavBuffers = [];
+      wavSampleRate = audioContext.sampleRate;
+      wavRecording = true;
+      recorderMode = "wav";
+
+      processorNode.onaudioprocess = function (event) {
+        if (!wavRecording) return;
+
+        const input = event.inputBuffer.getChannelData(0);
+        wavBuffers.push(new Float32Array(input));
+
+        const output = event.outputBuffer.getChannelData(0);
+        output.fill(0);
+      };
+
+      sourceNode.connect(processorNode);
+      processorNode.connect(audioContext.destination);
+    }
+
+    function stopRecording() {
+      stopTimer();
+
+      if (mediaRecorder && mediaRecorder.state !== "inactive") {
+        mediaRecorder.stop();
+        resetRecordButtons();
+        return;
+      }
+
+      if (recorderMode === "wav") {
+        handleWavRecorderStop();
+        resetRecordButtons();
+        return;
+      }
+
+      resetRecordButtons();
+    }
+
+    function handleMediaRecorderStop() {
+      stopTimer();
+
+      if (!audioChunks.length) {
+        showError("没有录到音频。请确认麦克风可用后再试。", false);
+        stopActiveRecorder();
+        stopMicrophone();
+        resetRecordButtons();
+        return;
+      }
+
+      const mimeType = mediaRecorder && mediaRecorder.mimeType ? mediaRecorder.mimeType : "audio/webm";
+      currentAudioBlob = new Blob(audioChunks, { type: mimeType });
+      currentAudioType = currentAudioBlob.type || mimeType;
+      setPreviewFromBlob(currentAudioBlob);
+
+      recordStatus.textContent = "录音完成，可预览或保存";
+      recordStatus.classList.remove("recording");
+      stopActiveRecorder(false);
+      stopMicrophone();
+      resetRecordButtons();
+    }
+
+    function handleWavRecorderStop() {
+      stopTimer();
+      wavRecording = false;
+
+      if (!wavBuffers.length) {
+        showError("没有录到音频。请确认麦克风可用后再试。", false);
+        stopActiveRecorder();
+        stopMicrophone();
+        resetRecordButtons();
+        return;
+      }
+
+      currentAudioBlob = encodeWav(wavBuffers, wavSampleRate);
+      currentAudioType = "audio/wav";
+      setPreviewFromBlob(currentAudioBlob);
+
+      recordStatus.textContent = "录音完成，可预览或保存";
+      recordStatus.classList.remove("recording");
+      stopActiveRecorder(false);
+      stopMicrophone();
+      resetRecordButtons();
+    }
+
+    function setPreviewFromBlob(blob) {
+      if (currentAudioUrl) {
+        URL.revokeObjectURL(currentAudioUrl);
+      }
+
+      currentAudioUrl = URL.createObjectURL(blob);
+      audioPreview.src = currentAudioUrl;
+      audioPreviewBox.style.display = "block";
+    }
+
+    function stopActiveRecorder(clearChunks = true) {
+      if (mediaRecorder && mediaRecorder.state !== "inactive") {
+        try {
+          mediaRecorder.stop();
+        } catch (error) {
+          console.warn(error);
+        }
+      }
+
+      mediaRecorder = null;
+
+      wavRecording = false;
+
+      if (processorNode) {
+        try {
+          processorNode.disconnect();
+        } catch (error) {
+          console.warn(error);
+        }
+      }
+
+      if (sourceNode) {
+        try {
+          sourceNode.disconnect();
+        } catch (error) {
+          console.warn(error);
+        }
+      }
+
+      processorNode = null;
+      sourceNode = null;
+
+      if (audioContext && audioContext.state !== "closed") {
+        audioContext.close().catch(() => {});
+      }
+
+      audioContext = null;
+      recorderMode = "";
+
+      if (clearChunks) {
+        audioChunks = [];
+        wavBuffers = [];
+      }
+    }
+
+    function getRecorderOptions() {
+      if (!MediaRecorder.isTypeSupported) {
+        return null;
+      }
+
+      const candidates = [
+        "audio/webm;codecs=opus",
+        "audio/webm",
+        "audio/mp4",
+        "audio/ogg;codecs=opus"
+      ];
+
+      for (const mimeType of candidates) {
+        if (MediaRecorder.isTypeSupported(mimeType)) {
+          return { mimeType };
+        }
+      }
+
+      return null;
+    }
+
+    function encodeWav(buffers, sampleRate) {
+      const samples = mergeFloat32Buffers(buffers);
+      const bytesPerSample = 2;
+      const blockAlign = bytesPerSample;
+      const byteRate = sampleRate * blockAlign;
+      const dataSize = samples.length * bytesPerSample;
+      const buffer = new ArrayBuffer(44 + dataSize);
+      const view = new DataView(buffer);
+
+      writeString(view, 0, "RIFF");
+      view.setUint32(4, 36 + dataSize, true);
+      writeString(view, 8, "WAVE");
+      writeString(view, 12, "fmt ");
+      view.setUint32(16, 16, true);
+      view.setUint16(20, 1, true);
+      view.setUint16(22, 1, true);
+      view.setUint32(24, sampleRate, true);
+      view.setUint32(28, byteRate, true);
+      view.setUint16(32, blockAlign, true);
+      view.setUint16(34, 16, true);
+      writeString(view, 36, "data");
+      view.setUint32(40, dataSize, true);
+
+      floatTo16BitPcm(view, 44, samples);
+
+      return new Blob([view], { type: "audio/wav" });
+    }
+
+    function mergeFloat32Buffers(buffers) {
+      const length = buffers.reduce((total, buffer) => total + buffer.length, 0);
+      const result = new Float32Array(length);
+      let offset = 0;
+
+      buffers.forEach(buffer => {
+        result.set(buffer, offset);
+        offset += buffer.length;
+      });
+
+      return result;
+    }
+
+    function floatTo16BitPcm(view, offset, input) {
+      for (let i = 0; i < input.length; i += 1, offset += 2) {
+        const sample = Math.max(-1, Math.min(1, input[i]));
+        view.setInt16(offset, sample < 0 ? sample * 0x8000 : sample * 0x7fff, true);
+      }
+    }
+
+    function writeString(view, offset, string) {
+      for (let i = 0; i < string.length; i += 1) {
+        view.setUint8(offset + i, string.charCodeAt(i));
+      }
+    }
+
+    function getMicrophoneErrorMessage(error) {
+      if (!error || !error.name) {
+        return "无法开始录音。请确认已经允许麦克风权限。";
+      }
+
+      if (error.name === "GetUserMediaUnsupported") {
+        return "这个浏览器当前没有开放麦克风 API，所以不会弹出权限请求。请不要用浏览器的文件预览方式打开 HTML；建议把页面放到 HTTPS，或在手机本机 localhost 环境打开。";
+      }
+
+      if (error.name === "RecorderUnsupported") {
+        return "这个浏览器可以拿到麦克风，但没有可用的录音编码能力。请换新版 Chrome、Edge、Firefox、Safari，或换系统自带浏览器测试。";
+      }
+
+      if (error.name === "NotAllowedError" || error.name === "PermissionDeniedError" || error.name === "SecurityError") {
+        return "麦克风权限被拒绝或当前页面环境不安全。请在浏览器地址栏、站点设置或系统设置中允许麦克风权限；如果是直接打开 HTML 文件，请改用 HTTPS 或 localhost。";
+      }
+
+      if (error.name === "NotFoundError" || error.name === "DevicesNotFoundError") {
+        return "没有找到可用麦克风。请确认手机麦克风权限正常，或外接麦克风已连接。";
+      }
+
+      if (error.name === "NotReadableError" || error.name === "TrackStartError") {
+        return "麦克风正被其他应用占用，或浏览器暂时无法读取。请关闭录音、通话、语音软件后重试。";
+      }
+
+      if (error.name === "OverconstrainedError") {
+        return "当前麦克风不支持请求的录音参数。已建议你刷新后重试，或换浏览器测试。";
+      }
+
+      return "无法开始录音。请确认麦克风权限、浏览器版本，以及页面是否在 HTTPS 或 localhost 环境下。";
+    }
+
+    async function saveCurrentRecord(event) {
+      event.preventDefault();
+      hideMessage();
+
+      const title = titleInput.value.trim();
+      const note = noteInput.value.trim();
+      const mood = moodSelect.value;
+      const usage = usageSelect.value;
+
+      if (!title) {
+        showError("请先输入旋律标题。");
+        titleInput.focus();
+        return;
+      }
+
+      if (!currentAudioBlob) {
+        showError("请先录一段音频，再保存。录音完成后会出现预览播放器。");
+        return;
+      }
+
+      const newRecord = {
+        id: createId(),
+        title,
+        note,
+        mood,
+        usage,
+        audioBlob: currentAudioBlob,
+        audioType: currentAudioType,
+        createdAt: new Date().toISOString()
+      };
+
+      try {
+        await putRecord(newRecord);
+        records.unshift(newRecord);
+        renderRecords();
+        resetFormAfterSave();
+        showSuccess("已保存灵感和录音。");
+        titleInput.focus();
+      } catch (error) {
+        console.error(error);
+        showError("保存失败。浏览器本地存储空间可能已满，可以删除一些旧录音后再试。", false);
+      }
+    }
+
+    async function handleListClick(event) {
+      const deleteButton = event.target.closest("[data-delete-id]");
+      if (!deleteButton) return;
+
+      const id = deleteButton.dataset.deleteId;
+      const confirmed = window.confirm("确定删除这条旋律录音吗？");
+      if (!confirmed) return;
+
+      try {
+        await deleteRecord(id);
+        records = records.filter(record => record.id !== id);
+        renderRecords();
+      } catch (error) {
+        console.error(error);
+        showError("删除失败，请刷新页面后再试。", false);
+      }
+    }
+
+    function discardCurrentAudio(showMessage = true) {
+      currentAudioBlob = null;
+      currentAudioType = "";
+      audioChunks = [];
+      wavBuffers = [];
+
+      if (currentAudioUrl) {
+        URL.revokeObjectURL(currentAudioUrl);
+      }
+
+      currentAudioUrl = "";
+      audioPreview.removeAttribute("src");
+      audioPreviewBox.style.display = "none";
+      recordStatus.textContent = "尚未录音";
+      recordStatus.classList.remove("recording");
+
+      if (showMessage) {
+        hideMessage();
+      }
+    }
+
+    function resetRecordButtons() {
+      startRecordBtn.disabled = false;
+      stopRecordBtn.disabled = true;
+    }
+
+    function startTimer() {
+      stopTimer();
+      timerId = window.setInterval(function () {
+        const seconds = Math.floor((Date.now() - recordStartedAt) / 1000);
+        recordStatus.textContent = `正在录音 ${formatDuration(seconds)}`;
+      }, 250);
+    }
+
+    function stopTimer() {
+      if (timerId) {
+        window.clearInterval(timerId);
+        timerId = null;
+      }
+    }
+
+    function stopMicrophone() {
+      if (!currentStream) return;
+      currentStream.getTracks().forEach(track => track.stop());
+      currentStream = null;
+    }
+
+    function resetFormAfterSave() {
+      form.reset();
+      discardCurrentAudio(false);
+      resetRecordButtons();
+      stopActiveRecorder();
+      stopMicrophone();
+    }
+
+    function renderRecords() {
+      revokeAudioUrls();
+      countText.textContent = `共 ${records.length} 条`;
+
+      if (records.length === 0) {
+        recordList.innerHTML = `
+          <div class="empty">
+            <strong>还没有旋律录音</strong>
+            <span>先录一段旋律，再保存到收纳盒里。</span>
+          </div>
+        `;
+        return;
+      }
+
+      recordList.innerHTML = records.map(record => {
+        const audioBlob = record.audioBlob;
+        const audioUrl = audioBlob instanceof Blob ? URL.createObjectURL(audioBlob) : "";
+        if (audioUrl) {
+          audioUrlMap.set(record.id, audioUrl);
+        }
+
+        return `
+          <article class="record">
+            <div class="record-head">
+              <h3 class="record-title">${escapeHtml(record.title)}</h3>
+              <button class="delete-btn" type="button" data-delete-id="${escapeHtml(record.id)}">删除</button>
+            </div>
+
+            ${record.note ? `<p class="note">${escapeHtml(record.note)}</p>` : `<p class="note">暂无备注</p>`}
+
+            <div class="record-audio">
+              ${audioUrl ? `<audio controls src="${audioUrl}"></audio>` : `<span class="time">这条记录没有可播放音频。</span>`}
+            </div>
+
+            <div class="meta">
+              <span class="tag">心情：${escapeHtml(record.mood)}</span>
+              <span class="tag">用途：${escapeHtml(record.usage)}</span>
+              <span class="time">创建于 ${formatTime(record.createdAt)}</span>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function revokeAudioUrls() {
+      for (const url of audioUrlMap.values()) {
+        URL.revokeObjectURL(url);
+      }
+      audioUrlMap.clear();
+    }
+
+    function openDatabase() {
+      return new Promise((resolve, reject) => {
+        const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+        request.onupgradeneeded = function () {
+          const database = request.result;
+          if (!database.objectStoreNames.contains(STORE_NAME)) {
+            const store = database.createObjectStore(STORE_NAME, { keyPath: "id" });
+            store.createIndex("createdAt", "createdAt");
+          }
+        };
+
+        request.onsuccess = function () {
+          resolve(request.result);
+        };
+
+        request.onerror = function () {
+          reject(request.error);
+        };
+      });
+    }
+
+    function getAllRecords() {
+      return new Promise((resolve, reject) => {
+        const transaction = db.transaction(STORE_NAME, "readonly");
+        const store = transaction.objectStore(STORE_NAME);
+        const request = store.getAll();
+
+        request.onsuccess = function () {
+          const items = request.result || [];
+          items.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+          resolve(items);
+        };
+
+        request.onerror = function () {
+          reject(request.error);
+        };
+      });
+    }
+
+    function putRecord(record) {
+      return new Promise((resolve, reject) => {
+        const transaction = db.transaction(STORE_NAME, "readwrite");
+        const store = transaction.objectStore(STORE_NAME);
+        const request = store.put(record);
+
+        request.onsuccess = function () {
+          resolve();
+        };
+
+        request.onerror = function () {
+          reject(request.error);
+        };
+      });
+    }
+
+    function deleteRecord(id) {
+      return new Promise((resolve, reject) => {
+        const transaction = db.transaction(STORE_NAME, "readwrite");
+        const store = transaction.objectStore(STORE_NAME);
+        const request = store.delete(id);
+
+        request.onsuccess = function () {
+          resolve();
+        };
+
+        request.onerror = function () {
+          reject(request.error);
+        };
+      });
+    }
+
+    function createId() {
+      if (window.crypto && typeof window.crypto.randomUUID === "function") {
+        return window.crypto.randomUUID();
+      }
+      return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    }
+
+    function formatDuration(totalSeconds) {
+      const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, "0");
+      const seconds = Math.floor(totalSeconds % 60).toString().padStart(2, "0");
+      return `${minutes}:${seconds}`;
+    }
+
+    function formatTime(isoString) {
+      const date = new Date(isoString);
+      return date.toLocaleString("zh-CN", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    }
+
+    function showError(message, autoHide = true) {
+      errorBox.textContent = message;
+      errorBox.style.display = "block";
+      successBox.style.display = "none";
+
+      if (autoHide) {
+        window.clearTimeout(showError.timer);
+        showError.timer = window.setTimeout(() => {
+          errorBox.style.display = "none";
+        }, 3600);
+      }
+    }
+
+    function showSuccess(message) {
+      successBox.textContent = message;
+      successBox.style.display = "block";
+      errorBox.style.display = "none";
+
+      window.clearTimeout(showSuccess.timer);
+      showSuccess.timer = window.setTimeout(() => {
+        successBox.style.display = "none";
+      }, 2400);
+    }
+
+    function hideMessage() {
+      errorBox.style.display = "none";
+      successBox.style.display = "none";
+    }
+
+    function escapeHtml(text) {
+      return String(text || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+  </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7939e04a4baf43c8b86a560f74aac60e","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
