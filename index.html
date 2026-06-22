@@ -138,7 +138,8 @@
       gap: 12px;
     }
 
-    .recorder-box {
+    .recorder-box,
+    .storage-box {
       margin-top: 16px;
       padding: 14px;
       border: 1px solid var(--line);
@@ -146,7 +147,8 @@
       background: rgba(255, 255, 255, 0.66);
     }
 
-    .recorder-title {
+    .recorder-title,
+    .storage-title {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -154,7 +156,8 @@
       margin-bottom: 12px;
     }
 
-    .recorder-title strong {
+    .recorder-title strong,
+    .storage-title strong {
       font-size: 14px;
     }
 
@@ -177,25 +180,31 @@
 
     .small-btn,
     .save-btn,
-    .secondary-btn {
+    .secondary-btn,
+    .work-btn,
+    .outline-btn {
       border: 0;
       border-radius: 15px;
       padding: 12px 14px;
       font: inherit;
       font-weight: 800;
       cursor: pointer;
-      transition: transform 0.15s ease, background 0.15s ease, opacity 0.15s ease;
+      transition: transform 0.15s ease, background 0.15s ease, opacity 0.15s ease, filter 0.15s ease;
     }
 
     .small-btn:hover,
     .save-btn:hover,
-    .secondary-btn:hover {
+    .secondary-btn:hover,
+    .work-btn:hover,
+    .outline-btn:hover {
       transform: translateY(-1px);
     }
 
     .small-btn:active,
     .save-btn:active,
-    .secondary-btn:active {
+    .secondary-btn:active,
+    .work-btn:active,
+    .outline-btn:active {
       transform: translateY(0);
     }
 
@@ -216,9 +225,26 @@
       background: #f1efff;
     }
 
+    .outline-btn {
+      color: var(--primary);
+      background: #f1efff;
+    }
+
+    .work-btn {
+      color: #fff;
+      background: var(--primary);
+    }
+
+    .work-btn:hover,
+    .save-btn:hover {
+      background: var(--primary-dark);
+    }
+
     .small-btn:disabled,
     .save-btn:disabled,
-    .secondary-btn:disabled {
+    .secondary-btn:disabled,
+    .work-btn:disabled,
+    .outline-btn:disabled {
       cursor: not-allowed;
       opacity: 0.42;
       transform: none;
@@ -247,12 +273,10 @@
       background: var(--primary);
     }
 
-    .save-btn:hover {
-      background: var(--primary-dark);
-    }
-
     .error,
-    .success {
+    .success,
+    .detail-message,
+    .storage-message {
       display: none;
       margin-top: 12px;
       padding: 10px 12px;
@@ -260,14 +284,34 @@
       font-size: 14px;
     }
 
-    .error {
+    .error,
+    .detail-message.is-error,
+    .storage-message.is-error {
       color: #a93434;
       background: var(--danger-bg);
     }
 
-    .success {
+    .success,
+    .detail-message.is-success,
+    .storage-message.is-success {
       color: #1f6f48;
       background: #eefaf3;
+    }
+
+    .storage-info {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .storage-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .storage-actions .outline-btn {
+      width: 100%;
     }
 
     .toolbar {
@@ -304,6 +348,12 @@
       margin-bottom: 8px;
     }
 
+    .record-title-wrap {
+      display: grid;
+      gap: 8px;
+      min-width: 0;
+    }
+
     .record-title {
       margin: 0;
       font-size: 18px;
@@ -311,8 +361,15 @@
       word-break: break-word;
     }
 
-    .delete-btn {
+    .record-actions {
+      display: flex;
       flex: 0 0 auto;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .delete-btn {
       border: 0;
       border-radius: 999px;
       padding: 7px 10px;
@@ -348,7 +405,8 @@
       align-items: center;
     }
 
-    .tag {
+    .tag,
+    .status-badge {
       display: inline-flex;
       align-items: center;
       min-height: 28px;
@@ -358,6 +416,26 @@
       background: var(--tag-bg);
       font-size: 13px;
       font-weight: 700;
+    }
+
+    .status-badge {
+      color: #805100;
+      background: #fff3d8;
+    }
+
+    .status-badge.status-chorded {
+      color: #315f9e;
+      background: #eaf2ff;
+    }
+
+    .status-badge.status-arranged {
+      color: #7551a6;
+      background: #f2eaff;
+    }
+
+    .status-badge.status-mixed {
+      color: #1f6f48;
+      background: #eefaf3;
     }
 
     .time {
@@ -386,6 +464,210 @@
       font-weight: 700;
     }
 
+    .detail-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(24, 18, 9, 0.36);
+    }
+
+    .detail-overlay.is-open {
+      display: flex;
+    }
+
+    .detail-panel {
+      width: min(760px, 100%);
+      max-height: min(88vh, 920px);
+      overflow: auto;
+      padding: 20px;
+      border-radius: 22px;
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: 0 28px 80px rgba(20, 16, 8, 0.24);
+    }
+
+    .detail-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .detail-head h2 {
+      margin: 0 0 6px;
+      font-size: 22px;
+      line-height: 1.3;
+    }
+
+    .close-btn {
+      width: 36px;
+      height: 36px;
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 999px;
+      color: var(--text);
+      background: #f5f1eb;
+      cursor: pointer;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .detail-card {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fbfaf7;
+    }
+
+    .detail-card h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+    }
+
+    .next-step {
+      margin-top: 14px;
+      padding: 14px;
+      border: 1px dashed #d6cfff;
+      border-radius: 16px;
+      background: #f7f5ff;
+    }
+
+    .next-step strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+
+    .chord-step {
+      border-style: solid;
+      background: linear-gradient(180deg, #fbf9ff 0%, #ffffff 100%);
+    }
+
+    .chord-step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .chord-step-header .work-btn,
+    .chord-step-header .outline-btn {
+      flex: 0 0 auto;
+      white-space: nowrap;
+    }
+
+    .chord-summary {
+      margin-top: 12px;
+      padding: 12px;
+      border: 1px solid #e1dcff;
+      border-radius: 14px;
+      color: #44378f;
+      background: #f4f1ff;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .chord-preview-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #e7e1d8;
+    }
+
+    .chord-preview-status {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .chord-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .chord-list[hidden] {
+      display: none;
+    }
+
+    .chord-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 100%;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    .chord-card.is-selected {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(111, 92, 255, 0.12);
+    }
+
+    .chord-card h4 {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .chord-text {
+      padding: 9px 10px;
+      border-radius: 12px;
+      color: #3f329e;
+      background: #f1efff;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+    }
+
+    .chord-description {
+      flex: 1;
+      margin: 0;
+      color: #555;
+      font-size: 13px;
+    }
+
+    .chord-card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .chord-card-actions .outline-btn,
+    .chord-card-actions .work-btn {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 13px;
+    }
+
+    .detail-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .detail-actions .save-btn,
+    .detail-actions .outline-btn {
+      width: auto;
+      margin-top: 0;
+    }
+
     @media (max-width: 860px) {
       .page {
         padding-top: 24px;
@@ -397,6 +679,38 @@
 
       .form-card {
         position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .record-head,
+      .detail-head {
+        flex-direction: column;
+      }
+
+      .record-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .chord-step-header,
+      .chord-preview-toolbar {
+        flex-direction: column;
+      }
+
+      .chord-step-header .work-btn,
+      .chord-step-header .outline-btn,
+      .chord-preview-toolbar .outline-btn {
+        width: 100%;
+      }
+
+      .chord-list {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -413,6 +727,15 @@
 
       .card {
         border-radius: 16px;
+      }
+
+      .detail-actions {
+        flex-direction: column-reverse;
+      }
+
+      .detail-actions .save-btn,
+      .detail-actions .outline-btn {
+        width: 100%;
       }
     }
   </style>
@@ -488,6 +811,18 @@
           <div class="error" id="errorBox">请先输入旋律标题。</div>
           <div class="success" id="successBox">已保存。</div>
         </form>
+
+        <div class="storage-box" aria-labelledby="storageTitle">
+          <div class="storage-title">
+            <strong id="storageTitle">本机存储</strong>
+            <span class="status" id="storageSupportText">正在检测</span>
+          </div>
+          <p class="storage-info" id="storageInfo">正在读取浏览器本地存储空间……</p>
+          <div class="storage-actions">
+            <button class="outline-btn" id="persistStorageBtn" type="button" hidden>请求持久保存</button>
+          </div>
+          <div class="storage-message" id="storageMessage"></div>
+        </div>
       </section>
 
       <section class="card list-card" aria-labelledby="listTitle">
@@ -501,10 +836,250 @@
     </div>
   </main>
 
+  <div class="detail-overlay" id="detailOverlay" role="dialog" aria-modal="true" aria-labelledby="detailTitleText">
+    <section class="detail-panel">
+      <div class="detail-head">
+        <div>
+          <h2 id="detailTitleText">旋律制作台</h2>
+          <span class="status-badge" id="detailStatusBadge">仅旋律</span>
+        </div>
+        <button class="close-btn" id="closeDetailBtn" type="button" aria-label="关闭制作台">×</button>
+      </div>
+
+      <div class="detail-grid">
+        <div class="detail-card">
+          <h3>原始录音播放器</h3>
+          <audio id="detailAudio" controls></audio>
+          <p class="hint" id="detailMetaText">暂无录音信息</p>
+        </div>
+
+        <form class="detail-card" id="detailForm">
+          <h3>基础信息</h3>
+
+          <label for="detailTitleInput">标题</label>
+          <input id="detailTitleInput" type="text" autocomplete="off" />
+
+          <label for="detailNoteInput">备注</label>
+          <textarea id="detailNoteInput"></textarea>
+
+          <div class="row">
+            <div>
+              <label for="detailMoodSelect">心情标签</label>
+              <select id="detailMoodSelect">
+                <option value="安静">安静</option>
+                <option value="伤感">伤感</option>
+                <option value="开心">开心</option>
+                <option value="热血">热血</option>
+                <option value="奇怪">奇怪</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="detailUsageSelect">用途标签</label>
+              <select id="detailUsageSelect">
+                <option value="主歌">主歌</option>
+                <option value="副歌">副歌</option>
+                <option value="前奏">前奏</option>
+                <option value="游戏BGM">游戏BGM</option>
+                <option value="不确定">不确定</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="detail-message" id="detailMessage"></div>
+
+          <div class="detail-actions">
+            <button class="outline-btn" id="cancelDetailBtn" type="button">关闭</button>
+            <button class="save-btn" type="submit">保存修改</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="next-step chord-step" id="chordStep">
+        <div class="chord-step-header">
+          <div>
+            <strong>下一步：推荐和弦底色</strong>
+            <p class="hint">这是根据心情和用途标签推荐的伴奏底色，不是严格扒谱。觉得不合适可以换一组。</p>
+          </div>
+          <button class="work-btn" id="recommendChordsBtn" type="button">推荐和弦底色</button>
+        </div>
+
+        <div class="chord-summary" id="selectedChordSummary">还没有选用和弦底色。</div>
+
+        <div class="chord-preview-toolbar">
+          <span class="chord-preview-status" id="chordPreviewStatus">尚未试听</span>
+          <button class="outline-btn" id="stopChordPreviewBtn" type="button" disabled>停止试听</button>
+        </div>
+
+        <div class="chord-list" id="chordRecommendationList" hidden></div>
+      </div>
+    </section>
+  </div>
+
   <script>
     const DB_NAME = "melody_inspiration_box_db";
-    const DB_VERSION = 1;
+    const DB_VERSION = 2;
     const STORE_NAME = "melody_records";
+
+    const STATUS_LABELS = {
+      captured: "仅旋律",
+      chorded: "已配和弦",
+      arranged: "已加编曲",
+      mixed: "已混音"
+    };
+
+    const VALID_STATUSES = Object.keys(STATUS_LABELS);
+
+
+    const CHORD_RECOMMENDATION_FALLBACKS = {
+      "安静": [
+        { id: "quiet_soft_room", name: "安静铺底", progression: ["C", "Am", "F", "G"], description: "像坐在房间里轻轻弹琴，稳定、温柔，适合先把旋律托住。" },
+        { id: "quiet_warm_flow", name: "温暖流动", progression: ["F", "G", "C", "Am"], description: "有一点慢慢展开的感觉，适合轻声讲故事。" },
+        { id: "quiet_clear_light", name: "清澈留白", progression: ["C", "G", "F", "C"], description: "颜色很干净，不会抢走人声，适合简单直白的旋律。" }
+      ],
+      "伤感": [
+        { id: "sad_chorus_shadow", name: "伤感副歌", progression: ["Am", "F", "C", "G"], description: "一上来就带一点遗憾感，适合想唱出心里话的旋律。" },
+        { id: "sad_slow_push", name: "慢慢推进", progression: ["F", "G", "Em", "Am"], description: "像情绪一点点涌上来，适合副歌前后承接。" },
+        { id: "sad_soft_return", name: "温柔回望", progression: ["C", "G", "Am", "F"], description: "伤感但不沉重，比较像回忆画面。" }
+      ],
+      "开心": [
+        { id: "happy_sunshine", name: "阳光轻快", progression: ["C", "G", "Am", "F"], description: "明亮、顺耳，很适合轻松愉快的旋律。" },
+        { id: "happy_warm_step", name: "温暖推进", progression: ["F", "C", "G", "Am"], description: "有一点向前走的感觉，但不会太激烈。" },
+        { id: "happy_simple_smile", name: "简单微笑", progression: ["C", "F", "G", "C"], description: "像一句自然的微笑，适合简单上口的段落。" }
+      ],
+      "热血": [
+        { id: "hot_big_chorus", name: "大副歌起飞", progression: ["C", "G", "Am", "F"], description: "很容易撑起高一点、亮一点的旋律，适合想唱开。" },
+        { id: "hot_push_forward", name: "向前推进", progression: ["Am", "F", "G", "C"], description: "有往前冲的感觉，适合情绪逐渐变强。" },
+        { id: "hot_wide_sky", name: "开阔天空", progression: ["F", "G", "C", "C"], description: "画面感比较开，适合前奏或副歌结尾。" }
+      ],
+      "奇怪": [
+        { id: "odd_dream_walk", name: "梦里散步", progression: ["Am", "G", "F", "G"], description: "有一点游离感，适合不太常规的旋律。" },
+        { id: "odd_float", name: "漂浮感", progression: ["F", "Am", "C", "G"], description: "像在空中慢慢晃动，适合特别的画面或游戏氛围。" },
+        { id: "odd_mystery", name: "神秘转身", progression: ["Dm", "F", "Am", "G"], description: "颜色稍微暗一点，适合悬念或奇妙情绪。" }
+      ]
+    };
+
+    const chordRecommendationMap = {
+      "安静": {
+        "主歌": [
+          { id: "quiet_verse_breath", name: "安静铺底", progression: ["C", "Am", "F", "G"], description: "像轻轻呼吸的钢琴底色，适合把主歌唱得亲近。" },
+          { id: "quiet_verse_window", name: "窗边独白", progression: ["C", "G", "Am", "F"], description: "温柔、顺耳，适合一句一句慢慢说。" },
+          { id: "quiet_verse_warm", name: "温暖留白", progression: ["F", "G", "C", "C"], description: "空间比较空，旋律会更容易被听清楚。" }
+        ],
+        "副歌": [
+          { id: "quiet_chorus_open", name: "温柔打开", progression: ["F", "G", "C", "Am"], description: "副歌会慢慢展开，但情绪仍然克制。" },
+          { id: "quiet_chorus_soft", name: "柔和抬起", progression: ["C", "G", "Am", "F"], description: "能把旋律托高一点，但不会显得用力。" },
+          { id: "quiet_chorus_return", name: "安静回环", progression: ["Am", "F", "C", "G"], description: "带一点轻微忧伤，适合细腻的副歌。" }
+        ],
+        "前奏": [
+          { id: "quiet_intro_first_light", name: "第一束光", progression: ["C", "F", "C", "G"], description: "开头很干净，适合先让听众进入画面。" },
+          { id: "quiet_intro_small_room", name: "小房间", progression: ["C", "Am", "F", "C"], description: "像一个人坐下开始弹唱，简单亲密。" },
+          { id: "quiet_intro_water", name: "水面微光", progression: ["F", "C", "G", "C"], description: "轻轻晃动的感觉，适合柔和前奏。" }
+        ],
+        "游戏BGM": [
+          { id: "quiet_game_safe_path", name: "安全小路", progression: ["C", "F", "Am", "G"], description: "轻松、安心，适合温暖场景或休息画面。" },
+          { id: "quiet_game_campfire", name: "篝火旁边", progression: ["Am", "F", "C", "G"], description: "有一点故事感，适合夜晚或回忆场景。" },
+          { id: "quiet_game_cloud", name: "云上散步", progression: ["F", "G", "C", "G"], description: "比较轻，适合作为不抢戏的背景。" }
+        ],
+        "不确定": CHORD_RECOMMENDATION_FALLBACKS["安静"]
+      },
+      "伤感": {
+        "主歌": [
+          { id: "sad_verse_low_voice", name: "低声倾诉", progression: ["Am", "F", "C", "G"], description: "一开始就有遗憾感，适合轻轻唱出心事。" },
+          { id: "sad_verse_rain", name: "雨夜主歌", progression: ["Am", "G", "F", "G"], description: "像雨夜里的反复想念，情绪比较收。" },
+          { id: "sad_verse_memory", name: "旧照片", progression: ["C", "G", "Am", "F"], description: "伤感但顺耳，适合回忆类旋律。" }
+        ],
+        "副歌": CHORD_RECOMMENDATION_FALLBACKS["伤感"],
+        "前奏": [
+          { id: "sad_intro_empty_street", name: "空街前奏", progression: ["Am", "F", "C", "G"], description: "开头就有画面，适合孤独、遗憾的氛围。" },
+          { id: "sad_intro_slow_light", name: "暗光慢起", progression: ["F", "G", "Em", "Am"], description: "像灯慢慢亮起来，适合进入故事。" },
+          { id: "sad_intro_soft_return", name: "轻轻回头", progression: ["C", "G", "Am", "Am"], description: "简单、克制，适合留出人声位置。" }
+        ],
+        "游戏BGM": [
+          { id: "sad_game_old_town", name: "旧城回忆", progression: ["Am", "F", "C", "G"], description: "适合剧情、离别、回忆场景。" },
+          { id: "sad_game_lonely_path", name: "孤独小路", progression: ["Dm", "Am", "F", "G"], description: "颜色更暗一点，适合夜晚或探索。" },
+          { id: "sad_game_fog", name: "雾中等待", progression: ["F", "G", "Am", "Am"], description: "像情绪悬在那里，适合不安但不激烈的画面。" }
+        ],
+        "不确定": CHORD_RECOMMENDATION_FALLBACKS["伤感"]
+      },
+      "开心": {
+        "主歌": [
+          { id: "happy_verse_walk", name: "轻快散步", progression: ["C", "G", "F", "G"], description: "像出门散步一样自然，适合轻松主歌。" },
+          { id: "happy_verse_smile", name: "微笑铺底", progression: ["C", "F", "G", "C"], description: "简单明亮，旋律会显得更亲切。" },
+          { id: "happy_verse_sun", name: "阳光侧脸", progression: ["F", "C", "G", "C"], description: "暖暖的，有一点小甜。" }
+        ],
+        "副歌": CHORD_RECOMMENDATION_FALLBACKS["开心"],
+        "前奏": [
+          { id: "happy_intro_open_door", name: "推开窗", progression: ["C", "F", "G", "C"], description: "开头明亮，容易让听众放松。" },
+          { id: "happy_intro_breeze", name: "小风吹过", progression: ["F", "G", "C", "C"], description: "轻巧、不复杂，适合短前奏。" },
+          { id: "happy_intro_step", name: "脚步轻轻", progression: ["C", "G", "Am", "F"], description: "有一点前进感，但仍然温暖。" }
+        ],
+        "游戏BGM": [
+          { id: "happy_game_village", name: "小镇晴天", progression: ["C", "F", "G", "C"], description: "适合明亮村庄、日常、休闲画面。" },
+          { id: "happy_game_shop", name: "商店小调", progression: ["C", "G", "F", "C"], description: "简单好记，适合作为轻松背景。" },
+          { id: "happy_game_trip", name: "出发旅行", progression: ["F", "C", "G", "Am"], description: "有一点出发感，适合积极场景。" }
+        ],
+        "不确定": CHORD_RECOMMENDATION_FALLBACKS["开心"]
+      },
+      "热血": {
+        "主歌": [
+          { id: "hot_verse_build", name: "慢慢蓄力", progression: ["Am", "F", "C", "G"], description: "主歌先压住，后面更容易爆发。" },
+          { id: "hot_verse_steps", name: "脚步变快", progression: ["F", "G", "Am", "Am"], description: "有推动感，适合逐渐变强的旋律。" },
+          { id: "hot_verse_light", name: "亮一点", progression: ["C", "G", "Am", "F"], description: "比较明亮，适合不太沉重的热血感。" }
+        ],
+        "副歌": CHORD_RECOMMENDATION_FALLBACKS["热血"],
+        "前奏": [
+          { id: "hot_intro_rise", name: "准备起飞", progression: ["F", "G", "Am", "G"], description: "像情绪马上要打开，适合有力量的前奏。" },
+          { id: "hot_intro_wide", name: "开阔开场", progression: ["C", "G", "F", "G"], description: "画面比较大，适合明亮开头。" },
+          { id: "hot_intro_flash", name: "闪光入场", progression: ["Am", "F", "G", "C"], description: "有一点冲劲，但不会太吵。" }
+        ],
+        "游戏BGM": [
+          { id: "hot_game_battle_ready", name: "战斗准备", progression: ["Am", "F", "G", "Am"], description: "适合准备、挑战、出发前的画面。" },
+          { id: "hot_game_run", name: "向前奔跑", progression: ["C", "G", "Am", "F"], description: "积极、顺耳，适合行动场景。" },
+          { id: "hot_game_win", name: "胜利远方", progression: ["F", "G", "C", "G"], description: "比较开阔，适合胜利或目标感。" }
+        ],
+        "不确定": CHORD_RECOMMENDATION_FALLBACKS["热血"]
+      },
+      "奇怪": {
+        "主歌": [
+          { id: "odd_verse_shadow", name: "影子晃动", progression: ["Am", "G", "F", "G"], description: "有一点不稳定，适合特别的主歌。" },
+          { id: "odd_verse_float", name: "漂浮独白", progression: ["F", "Am", "C", "G"], description: "像旋律飘着走，适合不规则的想法。" },
+          { id: "odd_verse_question", name: "问号感", progression: ["Dm", "F", "Am", "G"], description: "带一点疑问和神秘，适合奇妙情绪。" }
+        ],
+        "副歌": [
+          { id: "odd_chorus_dream", name: "梦里起伏", progression: ["F", "Am", "C", "G"], description: "副歌会有一点飘起来的感觉，但仍然好唱。" },
+          { id: "odd_chorus_turn", name: "突然转身", progression: ["Am", "F", "G", "C"], description: "有转折感，适合想要特别一点的副歌。" },
+          { id: "odd_chorus_mist", name: "雾气扩散", progression: ["Dm", "Am", "F", "G"], description: "颜色更神秘，适合画面感强的旋律。" }
+        ],
+        "前奏": [
+          { id: "odd_intro_clock", name: "钟摆前奏", progression: ["Am", "G", "F", "G"], description: "像东西在左右摆动，适合奇妙开头。" },
+          { id: "odd_intro_cloud", name: "云里转圈", progression: ["F", "Am", "G", "C"], description: "轻轻转动，适合梦境画面。" },
+          { id: "odd_intro_hidden", name: "藏起来", progression: ["Dm", "F", "Am", "Am"], description: "更安静、更神秘，适合铺垫。" }
+        ],
+        "游戏BGM": CHORD_RECOMMENDATION_FALLBACKS["奇怪"],
+        "不确定": CHORD_RECOMMENDATION_FALLBACKS["奇怪"]
+      }
+    };
+
+    const ROOT_MIDI_BY_CHORD = {
+      C: 60,
+      "C#": 61,
+      Db: 61,
+      D: 62,
+      "D#": 63,
+      Eb: 63,
+      E: 64,
+      F: 53,
+      "F#": 54,
+      Gb: 54,
+      G: 55,
+      "G#": 56,
+      Ab: 56,
+      A: 57,
+      "A#": 58,
+      Bb: 58,
+      B: 59
+    };
 
     const form = document.querySelector("#melodyForm");
     const titleInput = document.querySelector("#title");
@@ -523,6 +1098,27 @@
     const successBox = document.querySelector("#successBox");
     const secureHint = document.querySelector("#secureHint");
     const saveBtn = document.querySelector("#saveBtn");
+    const storageSupportText = document.querySelector("#storageSupportText");
+    const storageInfo = document.querySelector("#storageInfo");
+    const persistStorageBtn = document.querySelector("#persistStorageBtn");
+    const storageMessage = document.querySelector("#storageMessage");
+    const detailOverlay = document.querySelector("#detailOverlay");
+    const detailForm = document.querySelector("#detailForm");
+    const closeDetailBtn = document.querySelector("#closeDetailBtn");
+    const cancelDetailBtn = document.querySelector("#cancelDetailBtn");
+    const detailAudio = document.querySelector("#detailAudio");
+    const detailTitleInput = document.querySelector("#detailTitleInput");
+    const detailNoteInput = document.querySelector("#detailNoteInput");
+    const detailMoodSelect = document.querySelector("#detailMoodSelect");
+    const detailUsageSelect = document.querySelector("#detailUsageSelect");
+    const detailStatusBadge = document.querySelector("#detailStatusBadge");
+    const detailMetaText = document.querySelector("#detailMetaText");
+    const detailMessage = document.querySelector("#detailMessage");
+    const recommendChordsBtn = document.querySelector("#recommendChordsBtn");
+    const chordRecommendationList = document.querySelector("#chordRecommendationList");
+    const selectedChordSummary = document.querySelector("#selectedChordSummary");
+    const chordPreviewStatus = document.querySelector("#chordPreviewStatus");
+    const stopChordPreviewBtn = document.querySelector("#stopChordPreviewBtn");
 
     let db = null;
     let records = [];
@@ -531,10 +1127,18 @@
     let currentAudioBlob = null;
     let currentAudioUrl = "";
     let currentAudioType = "";
+    let currentAudioDuration = 0;
     let currentStream = null;
     let recordStartedAt = 0;
     let timerId = null;
     let audioUrlMap = new Map();
+    let selectedRecordId = "";
+    let detailAudioUrl = "";
+    let currentChordRecommendations = [];
+    let chordAudioContext = null;
+    let chordPreviewNodes = [];
+    let chordPreviewTimerId = null;
+    let activeChordPreviewId = "";
 
     let recorderMode = "";
     let audioContext = null;
@@ -548,11 +1152,13 @@
 
     async function init() {
       checkRecorderSupport();
+      setupStorageUi();
 
       try {
         db = await openDatabase();
         records = await getAllRecords();
         renderRecords();
+        updateStorageEstimate();
       } catch (error) {
         console.error(error);
         showError("初始化本地数据库失败。请确认浏览器没有禁用 IndexedDB。", false);
@@ -563,12 +1169,33 @@
       discardAudioBtn.addEventListener("click", discardCurrentAudio);
       form.addEventListener("submit", saveCurrentRecord);
       recordList.addEventListener("click", handleListClick);
+      persistStorageBtn.addEventListener("click", requestPersistentStorage);
+      detailForm.addEventListener("submit", saveDetailEdits);
+      closeDetailBtn.addEventListener("click", closeProductionDesk);
+      cancelDetailBtn.addEventListener("click", closeProductionDesk);
+      recommendChordsBtn.addEventListener("click", renderChordRecommendationsForSelectedRecord);
+      chordRecommendationList.addEventListener("click", handleChordRecommendationClick);
+      stopChordPreviewBtn.addEventListener("click", function () {
+        stopChordPreview("已停止试听。");
+      });
+      detailOverlay.addEventListener("click", function (event) {
+        if (event.target === detailOverlay) {
+          closeProductionDesk();
+        }
+      });
+      window.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && detailOverlay.classList.contains("is-open")) {
+          closeProductionDesk();
+        }
+      });
 
       window.addEventListener("beforeunload", function () {
         stopTimer();
         stopActiveRecorder();
         stopMicrophone();
         revokeAudioUrls();
+        revokeDetailAudioUrl();
+        stopChordPreview("已停止试听。");
       });
     }
 
@@ -619,6 +1246,7 @@
 
         currentStream = await requestMicrophoneStream();
         audioChunks = [];
+        currentAudioDuration = 0;
 
         const started = tryStartMediaRecorder(currentStream);
         if (!started) {
@@ -781,15 +1409,8 @@
       }
 
       const mimeType = mediaRecorder && mediaRecorder.mimeType ? mediaRecorder.mimeType : "audio/webm";
-      currentAudioBlob = new Blob(audioChunks, { type: mimeType });
-      currentAudioType = currentAudioBlob.type || mimeType;
-      setPreviewFromBlob(currentAudioBlob);
-
-      recordStatus.textContent = "录音完成，可预览或保存";
-      recordStatus.classList.remove("recording");
-      stopActiveRecorder(false);
-      stopMicrophone();
-      resetRecordButtons();
+      const blob = new Blob(audioChunks, { type: mimeType });
+      finishCurrentAudio(blob, blob.type || mimeType);
     }
 
     function handleWavRecorderStop() {
@@ -804,12 +1425,25 @@
         return;
       }
 
-      currentAudioBlob = encodeWav(wavBuffers, wavSampleRate);
-      currentAudioType = "audio/wav";
+      const blob = encodeWav(wavBuffers, wavSampleRate);
+      finishCurrentAudio(blob, "audio/wav");
+    }
+
+    function finishCurrentAudio(blob, audioType) {
+      currentAudioDuration = getElapsedRecordSeconds();
+      currentAudioBlob = blob;
+      currentAudioType = audioType || blob.type || "audio/webm";
       setPreviewFromBlob(currentAudioBlob);
 
-      recordStatus.textContent = "录音完成，可预览或保存";
-      recordStatus.classList.remove("recording");
+      if (!currentAudioBlob || currentAudioBlob.size <= 0) {
+        currentAudioBlob = null;
+        currentAudioDuration = 0;
+        showError("录音为空，未保存。请重新录制。", false);
+      } else {
+        recordStatus.textContent = `录音完成，可预览或保存（${formatDuration(currentAudioDuration)}）`;
+        recordStatus.classList.remove("recording");
+      }
+
       stopActiveRecorder(false);
       stopMicrophone();
       resetRecordButtons();
@@ -992,36 +1626,65 @@
         return;
       }
 
-      if (!currentAudioBlob) {
+      if (!(currentAudioBlob instanceof Blob)) {
         showError("请先录一段音频，再保存。录音完成后会出现预览播放器。");
         return;
       }
 
-      const newRecord = {
+      if (currentAudioBlob.size <= 0) {
+        showError("录音为空，未保存", false);
+        return;
+      }
+
+      const now = new Date().toISOString();
+      const newRecord = normalizeRecord({
         id: createId(),
         title,
         note,
         mood,
         usage,
         audioBlob: currentAudioBlob,
-        audioType: currentAudioType,
-        createdAt: new Date().toISOString()
-      };
+        audioType: currentAudioType || currentAudioBlob.type || "audio/webm",
+        duration: Math.max(0, Number(currentAudioDuration) || 0),
+        size: currentAudioBlob.size,
+        createdAt: now,
+        updatedAt: now,
+        status: "captured",
+        production: createDefaultProduction()
+      });
 
       try {
+        saveBtn.disabled = true;
         await putRecord(newRecord);
-        records.unshift(newRecord);
+
+        const savedRecord = await getRecord(newRecord.id);
+        if (!savedRecord || !(savedRecord.audioBlob instanceof Blob) || savedRecord.audioBlob.size <= 0) {
+          showError("保存后校验失败：未能从本地数据库读回有效音频，请检查浏览器存储权限或剩余空间。", false);
+          return;
+        }
+
+        const verifiedRecord = normalizeRecord(savedRecord);
+        records.unshift(verifiedRecord);
         renderRecords();
         resetFormAfterSave();
-        showSuccess("已保存灵感和录音。");
+        updateStorageEstimate();
+        showSuccess("已保存灵感和录音，并通过本地读回校验。");
         titleInput.focus();
       } catch (error) {
         console.error(error);
         showError("保存失败。浏览器本地存储空间可能已满，可以删除一些旧录音后再试。", false);
+      } finally {
+        saveBtn.disabled = false;
       }
     }
 
     async function handleListClick(event) {
+      const productionButton = event.target.closest("[data-production-id]");
+      if (productionButton) {
+        await openProductionDesk(productionButton.dataset.productionId);
+        return;
+      }
+
       const deleteButton = event.target.closest("[data-delete-id]");
       if (!deleteButton) return;
 
@@ -1033,15 +1696,459 @@
         await deleteRecord(id);
         records = records.filter(record => record.id !== id);
         renderRecords();
+        updateStorageEstimate();
       } catch (error) {
         console.error(error);
         showError("删除失败，请刷新页面后再试。", false);
       }
     }
 
+    async function openProductionDesk(id) {
+      hideDetailMessage();
+      selectedRecordId = id;
+
+      let record = records.find(item => item.id === id);
+      if (!record) {
+        const storedRecord = await getRecord(id);
+        record = storedRecord ? normalizeRecord(storedRecord) : null;
+      }
+
+      if (!record) {
+        showError("找不到这条录音，请刷新页面后再试。", false);
+        return;
+      }
+
+      detailTitleInput.value = record.title || "";
+      detailNoteInput.value = record.note || "";
+      detailMoodSelect.value = record.mood || "安静";
+      detailUsageSelect.value = record.usage || "不确定";
+      detailStatusBadge.textContent = getStatusLabel(record.status);
+      detailStatusBadge.className = `status-badge ${getStatusClass(record.status)}`;
+      detailMetaText.textContent = `当前完成度：${getStatusLabel(record.status)} · ${formatDurationText(record.duration)} · ${formatBytes(record.size)} · 更新于 ${formatTime(record.updatedAt || record.createdAt)}`;
+
+      revokeDetailAudioUrl();
+      if (record.audioBlob instanceof Blob && record.audioBlob.size > 0) {
+        detailAudioUrl = URL.createObjectURL(record.audioBlob);
+        detailAudio.src = detailAudioUrl;
+      } else {
+        detailAudio.removeAttribute("src");
+        detailMetaText.textContent = "这条记录没有可播放音频。";
+      }
+
+      currentChordRecommendations = [];
+      chordRecommendationList.innerHTML = "";
+      chordRecommendationList.hidden = true;
+      updateSelectedChordSummary(record);
+      updateChordPreviewUi();
+
+      detailOverlay.classList.add("is-open");
+      detailTitleInput.focus();
+    }
+
+    function closeProductionDesk() {
+      selectedRecordId = "";
+      detailOverlay.classList.remove("is-open");
+      hideDetailMessage();
+      stopChordPreview("已停止试听。");
+      currentChordRecommendations = [];
+      chordRecommendationList.innerHTML = "";
+      chordRecommendationList.hidden = true;
+      detailAudio.pause();
+      detailAudio.removeAttribute("src");
+      revokeDetailAudioUrl();
+    }
+
+    async function saveDetailEdits(event) {
+      event.preventDefault();
+      hideDetailMessage();
+
+      if (!selectedRecordId) {
+        showDetailMessage("没有选中的录音，无法保存。", "error");
+        return;
+      }
+
+      const title = detailTitleInput.value.trim();
+      if (!title) {
+        showDetailMessage("标题不能为空。", "error");
+        detailTitleInput.focus();
+        return;
+      }
+
+      try {
+        const storedRecord = await getRecord(selectedRecordId);
+        if (!storedRecord) {
+          showDetailMessage("找不到这条录音，无法保存修改。", "error");
+          return;
+        }
+
+        const updatedRecord = normalizeRecord({
+          ...storedRecord,
+          title,
+          note: detailNoteInput.value.trim(),
+          mood: detailMoodSelect.value,
+          usage: detailUsageSelect.value,
+          updatedAt: new Date().toISOString()
+        });
+
+        await putRecord(updatedRecord);
+        const savedRecord = await getRecord(updatedRecord.id);
+        if (!savedRecord) {
+          showDetailMessage("保存后校验失败：没有从本地数据库读回这条记录。", "error");
+          return;
+        }
+
+        const normalizedSavedRecord = normalizeRecord(savedRecord);
+        records = records.map(record => record.id === normalizedSavedRecord.id ? normalizedSavedRecord : record);
+        renderRecords();
+        updateStorageEstimate();
+        updateSelectedChordSummary(normalizedSavedRecord);
+        if (!chordRecommendationList.hidden) {
+          renderChordRecommendationsForRecord(normalizedSavedRecord);
+        }
+        showDetailMessage("修改已保存，刷新页面后也会保留。", "success");
+        detailMetaText.textContent = `当前完成度：${getStatusLabel(normalizedSavedRecord.status)} · ${formatDurationText(normalizedSavedRecord.duration)} · ${formatBytes(normalizedSavedRecord.size)} · 更新于 ${formatTime(normalizedSavedRecord.updatedAt || normalizedSavedRecord.createdAt)}`;
+      } catch (error) {
+        console.error(error);
+        showDetailMessage("保存修改失败。请确认浏览器本地存储可用。", "error");
+      }
+    }
+
+    async function renderChordRecommendationsForSelectedRecord() {
+      hideDetailMessage();
+
+      const record = await getCurrentDetailRecord();
+      if (!record) {
+        showDetailMessage("找不到这条录音，无法推荐和弦底色。", "error");
+        return;
+      }
+
+      renderChordRecommendationsForRecord(record);
+    }
+
+    function renderChordRecommendationsForRecord(record) {
+      const mood = detailMoodSelect.value || record.mood || "安静";
+      const usage = detailUsageSelect.value || record.usage || "不确定";
+      currentChordRecommendations = getChordRecommendations(mood, usage);
+
+      chordRecommendationList.innerHTML = currentChordRecommendations.map(recommendation => {
+        const progressionText = formatProgressionText(recommendation.progression);
+        const selectedText = normalizeProgressionValue(recommendation.progression);
+        const isSelected = selectedText === getSelectedChordValue(record);
+
+        return `
+          <article class="chord-card ${isSelected ? "is-selected" : ""}">
+            <h4>${escapeHtml(recommendation.name)}</h4>
+            <div class="chord-text">${escapeHtml(progressionText)}</div>
+            <p class="chord-description">${escapeHtml(recommendation.description)}</p>
+            <div class="chord-card-actions">
+              <button class="outline-btn" type="button" data-preview-id="${escapeHtml(recommendation.id)}">试听</button>
+              <button class="work-btn" type="button" data-select-chord-id="${escapeHtml(recommendation.id)}">${isSelected ? "已选用" : "选用这组"}</button>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      chordRecommendationList.hidden = false;
+      chordPreviewStatus.textContent = `已根据“${mood} / ${usage}”给出 3 组伴奏底色。`;
+      updateChordPreviewUi();
+    }
+
+    async function handleChordRecommendationClick(event) {
+      const previewButton = event.target.closest("[data-preview-id]");
+      if (previewButton) {
+        const recommendation = findCurrentRecommendation(previewButton.dataset.previewId);
+        if (!recommendation) return;
+
+        try {
+          await playChordProgression(recommendation.progression, recommendation.id, recommendation.name);
+        } catch (error) {
+          console.error(error);
+          showDetailMessage("试听失败。请确认浏览器允许网页播放声音，然后再点一次试听。", "error");
+          stopChordPreview("试听失败。");
+        }
+        return;
+      }
+
+      const selectButton = event.target.closest("[data-select-chord-id]");
+      if (selectButton) {
+        const recommendation = findCurrentRecommendation(selectButton.dataset.selectChordId);
+        if (!recommendation) return;
+        await selectChordRecommendation(recommendation);
+      }
+    }
+
+    async function selectChordRecommendation(recommendation) {
+      hideDetailMessage();
+
+      if (!selectedRecordId) {
+        showDetailMessage("没有选中的录音，无法保存和弦底色。", "error");
+        return;
+      }
+
+      const title = detailTitleInput.value.trim();
+      if (!title) {
+        showDetailMessage("标题不能为空。请先补上标题，再选用和弦底色。", "error");
+        detailTitleInput.focus();
+        return;
+      }
+
+      try {
+        const storedRecord = await getRecord(selectedRecordId);
+        if (!storedRecord) {
+          showDetailMessage("找不到这条录音，无法保存和弦底色。", "error");
+          return;
+        }
+
+        const normalizedRecord = normalizeRecord(storedRecord);
+        const selectedChordText = normalizeProgressionValue(recommendation.progression);
+        const now = new Date().toISOString();
+        const updatedRecord = normalizeRecord({
+          ...normalizedRecord,
+          title,
+          note: detailNoteInput.value.trim(),
+          mood: detailMoodSelect.value,
+          usage: detailUsageSelect.value,
+          status: getStatusAfterChordSelection(normalizedRecord.status),
+          updatedAt: now,
+          production: {
+            ...normalizedRecord.production,
+            chords: {
+              selected: selectedChordText,
+              source: "mood_usage_rule"
+            }
+          }
+        });
+
+        await putRecord(updatedRecord);
+        const savedRecord = await getRecord(updatedRecord.id);
+        if (!savedRecord) {
+          showDetailMessage("保存后校验失败：没有从本地数据库读回这条记录。", "error");
+          return;
+        }
+
+        const normalizedSavedRecord = normalizeRecord(savedRecord);
+        records = records.map(record => record.id === normalizedSavedRecord.id ? normalizedSavedRecord : record);
+        renderRecords();
+        updateStorageEstimate();
+        updateSelectedChordSummary(normalizedSavedRecord);
+        renderChordRecommendationsForRecord(normalizedSavedRecord);
+        detailStatusBadge.textContent = getStatusLabel(normalizedSavedRecord.status);
+        detailStatusBadge.className = `status-badge ${getStatusClass(normalizedSavedRecord.status)}`;
+        detailMetaText.textContent = `当前完成度：${getStatusLabel(normalizedSavedRecord.status)} · ${formatDurationText(normalizedSavedRecord.duration)} · ${formatBytes(normalizedSavedRecord.size)} · 更新于 ${formatTime(normalizedSavedRecord.updatedAt || normalizedSavedRecord.createdAt)}`;
+        showDetailMessage(`已选用“${recommendation.name}”：${formatProgressionText(recommendation.progression)}。刷新页面后也会保留。`, "success");
+      } catch (error) {
+        console.error(error);
+        showDetailMessage("保存和弦底色失败。请确认浏览器本地存储可用。", "error");
+      }
+    }
+
+    async function playChordProgression(progression, previewId, name) {
+      stopChordPreview("正在准备试听……");
+
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) {
+        throw new Error("当前浏览器不支持 Web Audio API");
+      }
+
+      if (!chordAudioContext || chordAudioContext.state === "closed") {
+        chordAudioContext = new AudioContextClass();
+      }
+
+      if (chordAudioContext.state === "suspended") {
+        await chordAudioContext.resume();
+      }
+
+      const now = chordAudioContext.currentTime + 0.08;
+      const masterGain = chordAudioContext.createGain();
+      masterGain.gain.setValueAtTime(0.55, now);
+      masterGain.connect(chordAudioContext.destination);
+      chordPreviewNodes.push(masterGain);
+
+      const progressionArray = Array.isArray(progression)
+        ? progression
+        : String(progression || "").split("-").map(item => item.trim()).filter(Boolean);
+
+      const chordDuration = 1.65;
+      const noteDuration = 0.72;
+      const arpeggioOffsets = [0, 0.24, 0.48, 0.72, 0.96];
+
+      progressionArray.forEach((chordName, chordIndex) => {
+        const notes = buildChordMidiNotes(chordName);
+        const arpeggioNotes = [notes[0], notes[1], notes[2], notes[1] + 12, notes[2]];
+        const chordStart = now + chordIndex * chordDuration;
+
+        arpeggioNotes.forEach((midiNote, noteIndex) => {
+          playSoftElectricPianoNote(midiNote, chordStart + arpeggioOffsets[noteIndex], noteDuration, masterGain);
+        });
+      });
+
+      activeChordPreviewId = previewId || "";
+      chordPreviewStatus.textContent = `正在试听：${name || "这组和弦底色"}。`;
+      updateChordPreviewUi();
+
+      const totalMs = Math.ceil((progressionArray.length * chordDuration + 0.9) * 1000);
+      chordPreviewTimerId = window.setTimeout(() => {
+        stopChordPreview("试听结束。可以换一组再听，或选用喜欢的底色。");
+      }, totalMs);
+    }
+
+    function playSoftElectricPianoNote(midiNote, startTime, duration, destination) {
+      const frequency = midiToFrequency(midiNote);
+      const oscillator = chordAudioContext.createOscillator();
+      const overtone = chordAudioContext.createOscillator();
+      const noteGain = chordAudioContext.createGain();
+      const overtoneGain = chordAudioContext.createGain();
+
+      oscillator.type = "sine";
+      overtone.type = "triangle";
+      oscillator.frequency.setValueAtTime(frequency, startTime);
+      overtone.frequency.setValueAtTime(frequency * 2, startTime);
+
+      noteGain.gain.setValueAtTime(0.0001, startTime);
+      noteGain.gain.exponentialRampToValueAtTime(0.22, startTime + 0.025);
+      noteGain.gain.exponentialRampToValueAtTime(0.075, startTime + 0.18);
+      noteGain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+      overtoneGain.gain.setValueAtTime(0.0001, startTime);
+      overtoneGain.gain.exponentialRampToValueAtTime(0.035, startTime + 0.025);
+      overtoneGain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration * 0.72);
+
+      oscillator.connect(noteGain);
+      overtone.connect(overtoneGain);
+      noteGain.connect(destination);
+      overtoneGain.connect(destination);
+
+      oscillator.start(startTime);
+      overtone.start(startTime);
+      oscillator.stop(startTime + duration + 0.08);
+      overtone.stop(startTime + duration + 0.08);
+
+      chordPreviewNodes.push(oscillator, overtone, noteGain, overtoneGain);
+    }
+
+    function stopChordPreview(statusText = "尚未试听") {
+      if (chordPreviewTimerId) {
+        window.clearTimeout(chordPreviewTimerId);
+        chordPreviewTimerId = null;
+      }
+
+      chordPreviewNodes.forEach(node => {
+        try {
+          if (typeof node.stop === "function") {
+            node.stop(0);
+          }
+        } catch (error) {
+          // 已经停止的节点会抛错，忽略即可。
+        }
+
+        try {
+          if (typeof node.disconnect === "function") {
+            node.disconnect();
+          }
+        } catch (error) {
+          // 已经断开的节点会抛错，忽略即可。
+        }
+      });
+
+      chordPreviewNodes = [];
+      activeChordPreviewId = "";
+
+      if (chordPreviewStatus) {
+        chordPreviewStatus.textContent = statusText;
+      }
+
+      updateChordPreviewUi();
+    }
+
+    function updateChordPreviewUi() {
+      if (!stopChordPreviewBtn || !chordRecommendationList) return;
+
+      stopChordPreviewBtn.disabled = !activeChordPreviewId;
+      chordRecommendationList.querySelectorAll("[data-preview-id]").forEach(button => {
+        button.textContent = button.dataset.previewId === activeChordPreviewId ? "正在试听" : "试听";
+      });
+    }
+
+    function getChordRecommendations(mood, usage) {
+      const moodMap = chordRecommendationMap[mood] || chordRecommendationMap["安静"];
+      const recommendations = moodMap[usage] || moodMap["不确定"] || CHORD_RECOMMENDATION_FALLBACKS[mood] || CHORD_RECOMMENDATION_FALLBACKS["安静"];
+      return recommendations.slice(0, 3).map(item => ({
+        ...item,
+        progression: Array.isArray(item.progression) ? item.progression : String(item.progression || "").split("-").map(chord => chord.trim()).filter(Boolean)
+      }));
+    }
+
+    function findCurrentRecommendation(id) {
+      return currentChordRecommendations.find(recommendation => recommendation.id === id) || null;
+    }
+
+    async function getCurrentDetailRecord() {
+      if (!selectedRecordId) return null;
+      const inMemoryRecord = records.find(item => item.id === selectedRecordId);
+      if (inMemoryRecord) return normalizeRecord(inMemoryRecord);
+      const storedRecord = await getRecord(selectedRecordId);
+      return storedRecord ? normalizeRecord(storedRecord) : null;
+    }
+
+    function updateSelectedChordSummary(record) {
+      if (!selectedChordSummary) return;
+      const normalizedRecord = normalizeRecord(record);
+      const selected = normalizedRecord.production.chords.selected;
+
+      if (!selected) {
+        selectedChordSummary.textContent = "还没有选用和弦底色。";
+        return;
+      }
+
+      selectedChordSummary.textContent = `已选用：${formatProgressionText(selected)}。你可以继续试听并换成另一组。`;
+    }
+
+    function getSelectedChordValue(record) {
+      return normalizeRecord(record).production.chords.selected || "";
+    }
+
+    function normalizeProgressionValue(progression) {
+      if (Array.isArray(progression)) {
+        return progression.map(chord => String(chord || "").trim()).filter(Boolean).join("-");
+      }
+
+      return String(progression || "")
+        .split("-")
+        .map(chord => chord.trim())
+        .filter(Boolean)
+        .join("-");
+    }
+
+    function formatProgressionText(progression) {
+      return normalizeProgressionValue(progression).replaceAll("-", " - ");
+    }
+
+    function buildChordMidiNotes(chordName) {
+      const cleanName = String(chordName || "C").trim();
+      const match = cleanName.match(/^([A-G](?:#|b)?)(m?)/);
+      const rootName = match ? match[1] : "C";
+      const isMinor = Boolean(match && match[2] === "m");
+      const rootMidi = ROOT_MIDI_BY_CHORD[rootName] ?? 60;
+      const intervals = isMinor ? [0, 3, 7] : [0, 4, 7];
+
+      return intervals.map(interval => rootMidi + interval);
+    }
+
+    function midiToFrequency(midiNote) {
+      return 440 * Math.pow(2, (midiNote - 69) / 12);
+    }
+
+    function getStatusAfterChordSelection(status) {
+      if (status === "arranged" || status === "mixed") {
+        return status;
+      }
+      return "chorded";
+    }
+
     function discardCurrentAudio(showMessage = true) {
       currentAudioBlob = null;
       currentAudioType = "";
+      currentAudioDuration = 0;
       audioChunks = [];
       wavBuffers = [];
 
@@ -1068,7 +2175,7 @@
     function startTimer() {
       stopTimer();
       timerId = window.setInterval(function () {
-        const seconds = Math.floor((Date.now() - recordStartedAt) / 1000);
+        const seconds = getElapsedRecordSeconds();
         recordStatus.textContent = `正在录音 ${formatDuration(seconds)}`;
       }, 250);
     }
@@ -1078,6 +2185,11 @@
         window.clearInterval(timerId);
         timerId = null;
       }
+    }
+
+    function getElapsedRecordSeconds() {
+      if (!recordStartedAt) return 0;
+      return Math.max(0, (Date.now() - recordStartedAt) / 1000);
     }
 
     function stopMicrophone() {
@@ -1096,6 +2208,7 @@
 
     function renderRecords() {
       revokeAudioUrls();
+      records = records.map(normalizeRecord).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       countText.textContent = `共 ${records.length} 条`;
 
       if (records.length === 0) {
@@ -1110,16 +2223,24 @@
 
       recordList.innerHTML = records.map(record => {
         const audioBlob = record.audioBlob;
-        const audioUrl = audioBlob instanceof Blob ? URL.createObjectURL(audioBlob) : "";
+        const audioUrl = audioBlob instanceof Blob && audioBlob.size > 0 ? URL.createObjectURL(audioBlob) : "";
         if (audioUrl) {
           audioUrlMap.set(record.id, audioUrl);
         }
 
+        const productionButtonText = record.status === "captured" ? "开始制作" : "继续制作";
+
         return `
           <article class="record">
             <div class="record-head">
-              <h3 class="record-title">${escapeHtml(record.title)}</h3>
-              <button class="delete-btn" type="button" data-delete-id="${escapeHtml(record.id)}">删除</button>
+              <div class="record-title-wrap">
+                <h3 class="record-title">${escapeHtml(record.title)}</h3>
+                <span class="status-badge ${getStatusClass(record.status)}">${escapeHtml(getStatusLabel(record.status))}</span>
+              </div>
+              <div class="record-actions">
+                <button class="work-btn" type="button" data-production-id="${escapeHtml(record.id)}">${productionButtonText}</button>
+                <button class="delete-btn" type="button" data-delete-id="${escapeHtml(record.id)}">删除</button>
+              </div>
             </div>
 
             ${record.note ? `<p class="note">${escapeHtml(record.note)}</p>` : `<p class="note">暂无备注</p>`}
@@ -1131,7 +2252,11 @@
             <div class="meta">
               <span class="tag">心情：${escapeHtml(record.mood)}</span>
               <span class="tag">用途：${escapeHtml(record.usage)}</span>
+              ${record.production.chords.selected ? `<span class="tag">和弦：${escapeHtml(formatProgressionText(record.production.chords.selected))}</span>` : ""}
+              <span class="time">${formatDurationText(record.duration)}</span>
+              <span class="time">${formatBytes(record.size)}</span>
               <span class="time">创建于 ${formatTime(record.createdAt)}</span>
+              <span class="time">更新于 ${formatTime(record.updatedAt || record.createdAt)}</span>
             </div>
           </article>
         `;
@@ -1145,14 +2270,28 @@
       audioUrlMap.clear();
     }
 
+    function revokeDetailAudioUrl() {
+      if (detailAudioUrl) {
+        URL.revokeObjectURL(detailAudioUrl);
+        detailAudioUrl = "";
+      }
+    }
+
     function openDatabase() {
       return new Promise((resolve, reject) => {
         const request = indexedDB.open(DB_NAME, DB_VERSION);
 
         request.onupgradeneeded = function () {
           const database = request.result;
+          let store = null;
+
           if (!database.objectStoreNames.contains(STORE_NAME)) {
-            const store = database.createObjectStore(STORE_NAME, { keyPath: "id" });
+            store = database.createObjectStore(STORE_NAME, { keyPath: "id" });
+          } else {
+            store = request.transaction.objectStore(STORE_NAME);
+          }
+
+          if (store && !store.indexNames.contains("createdAt")) {
             store.createIndex("createdAt", "createdAt");
           }
         };
@@ -1173,10 +2312,37 @@
         const store = transaction.objectStore(STORE_NAME);
         const request = store.getAll();
 
+        request.onsuccess = async function () {
+          try {
+            const items = request.result || [];
+            const normalizedItems = items.map(normalizeRecord);
+            normalizedItems.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            const hasOldRecords = items.some(recordNeedsUpgrade);
+            if (hasOldRecords) {
+              await migrateOldRecords(normalizedItems);
+            }
+
+            resolve(normalizedItems);
+          } catch (error) {
+            reject(error);
+          }
+        };
+
+        request.onerror = function () {
+          reject(request.error);
+        };
+      });
+    }
+
+    function getRecord(id) {
+      return new Promise((resolve, reject) => {
+        const transaction = db.transaction(STORE_NAME, "readonly");
+        const store = transaction.objectStore(STORE_NAME);
+        const request = store.get(id);
+
         request.onsuccess = function () {
-          const items = request.result || [];
-          items.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-          resolve(items);
+          resolve(request.result || null);
         };
 
         request.onerror = function () {
@@ -1191,12 +2357,48 @@
         const store = transaction.objectStore(STORE_NAME);
         const request = store.put(record);
 
-        request.onsuccess = function () {
+        request.onerror = function () {
+          reject(request.error);
+        };
+
+        transaction.oncomplete = function () {
           resolve();
         };
 
-        request.onerror = function () {
-          reject(request.error);
+        transaction.onerror = function () {
+          reject(transaction.error || request.error);
+        };
+
+        transaction.onabort = function () {
+          reject(transaction.error || new Error("IndexedDB transaction aborted"));
+        };
+      });
+    }
+
+    function migrateOldRecords(items) {
+      return new Promise((resolve, reject) => {
+        if (!items.length) {
+          resolve();
+          return;
+        }
+
+        const transaction = db.transaction(STORE_NAME, "readwrite");
+        const store = transaction.objectStore(STORE_NAME);
+
+        items.forEach(item => {
+          store.put(item);
+        });
+
+        transaction.oncomplete = function () {
+          resolve();
+        };
+
+        transaction.onerror = function () {
+          reject(transaction.error);
+        };
+
+        transaction.onabort = function () {
+          reject(transaction.error || new Error("IndexedDB migration aborted"));
         };
       });
     }
@@ -1207,14 +2409,179 @@
         const store = transaction.objectStore(STORE_NAME);
         const request = store.delete(id);
 
-        request.onsuccess = function () {
-          resolve();
-        };
-
         request.onerror = function () {
           reject(request.error);
         };
+
+        transaction.oncomplete = function () {
+          resolve();
+        };
+
+        transaction.onerror = function () {
+          reject(transaction.error || request.error);
+        };
+
+        transaction.onabort = function () {
+          reject(transaction.error || new Error("IndexedDB delete aborted"));
+        };
       });
+    }
+
+    function normalizeRecord(record) {
+      const original = record || {};
+      const now = new Date().toISOString();
+      const createdAt = isValidDateString(original.createdAt) ? original.createdAt : now;
+      const updatedAt = isValidDateString(original.updatedAt) ? original.updatedAt : createdAt;
+      const audioBlob = original.audioBlob instanceof Blob ? original.audioBlob : null;
+      const size = getSafeNumber(original.size, audioBlob ? audioBlob.size : 0);
+      const duration = getSafeNumber(original.duration, 0);
+      const status = VALID_STATUSES.includes(original.status) ? original.status : "captured";
+
+      return {
+        ...original,
+        id: original.id || createId(),
+        title: String(original.title || "未命名旋律"),
+        note: String(original.note || ""),
+        mood: String(original.mood || "安静"),
+        usage: String(original.usage || "不确定"),
+        audioBlob: original.audioBlob,
+        audioType: String(original.audioType || (audioBlob && audioBlob.type) || "audio/webm"),
+        createdAt,
+        duration,
+        size,
+        updatedAt,
+        status,
+        production: mergeProduction(original.production)
+      };
+    }
+
+    function recordNeedsUpgrade(record) {
+      if (!record || typeof record !== "object") return true;
+
+      const production = record.production || {};
+      const chords = production.chords || {};
+      const instruments = production.instruments || {};
+      const rhythm = production.rhythm || {};
+      const mix = production.mix || {};
+
+      return !Object.prototype.hasOwnProperty.call(record, "duration") ||
+        !Object.prototype.hasOwnProperty.call(record, "size") ||
+        !Object.prototype.hasOwnProperty.call(record, "updatedAt") ||
+        !Object.prototype.hasOwnProperty.call(record, "status") ||
+        !Object.prototype.hasOwnProperty.call(record, "production") ||
+        !Object.prototype.hasOwnProperty.call(chords, "selected") ||
+        !Object.prototype.hasOwnProperty.call(chords, "source") ||
+        !Object.prototype.hasOwnProperty.call(instruments, "piano") ||
+        !Object.prototype.hasOwnProperty.call(instruments, "bass") ||
+        !Object.prototype.hasOwnProperty.call(instruments, "strings") ||
+        !Object.prototype.hasOwnProperty.call(rhythm, "type") ||
+        !Object.prototype.hasOwnProperty.call(rhythm, "speed") ||
+        !Object.prototype.hasOwnProperty.call(mix, "reverbLevel") ||
+        !Object.prototype.hasOwnProperty.call(mix, "delayLevel") ||
+        !Object.prototype.hasOwnProperty.call(mix, "warmthLevel");
+    }
+
+    function createDefaultProduction() {
+      return {
+        chords: { selected: "", source: "" },
+        instruments: { piano: false, bass: false, strings: false },
+        rhythm: { type: "", speed: "medium" },
+        mix: { reverbLevel: 0.35, delayLevel: 0.12, warmthLevel: 0.5 }
+      };
+    }
+
+    function mergeProduction(production) {
+      const defaults = createDefaultProduction();
+      const input = production && typeof production === "object" ? production : {};
+      const chords = input.chords && typeof input.chords === "object" ? input.chords : {};
+      const instruments = input.instruments && typeof input.instruments === "object" ? input.instruments : {};
+      const rhythm = input.rhythm && typeof input.rhythm === "object" ? input.rhythm : {};
+      const mix = input.mix && typeof input.mix === "object" ? input.mix : {};
+
+      return {
+        chords: {
+          selected: String(chords.selected ?? defaults.chords.selected),
+          source: String(chords.source ?? defaults.chords.source)
+        },
+        instruments: {
+          piano: Boolean(instruments.piano ?? defaults.instruments.piano),
+          bass: Boolean(instruments.bass ?? defaults.instruments.bass),
+          strings: Boolean(instruments.strings ?? defaults.instruments.strings)
+        },
+        rhythm: {
+          type: String(rhythm.type ?? defaults.rhythm.type),
+          speed: String(rhythm.speed ?? defaults.rhythm.speed)
+        },
+        mix: {
+          reverbLevel: getSafeNumber(mix.reverbLevel, defaults.mix.reverbLevel),
+          delayLevel: getSafeNumber(mix.delayLevel, defaults.mix.delayLevel),
+          warmthLevel: getSafeNumber(mix.warmthLevel, defaults.mix.warmthLevel)
+        }
+      };
+    }
+
+    function getSafeNumber(value, fallback) {
+      const number = Number(value);
+      return Number.isFinite(number) && number >= 0 ? number : fallback;
+    }
+
+    function isValidDateString(value) {
+      return Boolean(value) && !Number.isNaN(new Date(value).getTime());
+    }
+
+    function setupStorageUi() {
+      if (!navigator.storage) {
+        storageSupportText.textContent = "不支持";
+        storageInfo.textContent = "当前浏览器不支持 Storage Manager API，但录音仍会尝试保存到 IndexedDB。";
+        return;
+      }
+
+      storageSupportText.textContent = "已支持";
+
+      if (typeof navigator.storage.persist === "function") {
+        persistStorageBtn.hidden = false;
+      }
+    }
+
+    async function updateStorageEstimate() {
+      if (!navigator.storage || typeof navigator.storage.estimate !== "function") {
+        storageInfo.textContent = "当前浏览器无法显示存储空间估算。";
+        return;
+      }
+
+      try {
+        const estimate = await navigator.storage.estimate();
+        const usage = estimate.usage || 0;
+        const quota = estimate.quota || 0;
+        const percent = quota > 0 ? (usage / quota) * 100 : 0;
+        storageInfo.textContent = quota > 0
+          ? `大概已用 ${formatBytes(usage)} / 浏览器可用上限 ${formatBytes(quota)}（${percent.toFixed(1)}%）`
+          : `大概已用 ${formatBytes(usage)}，当前浏览器没有返回可用上限。`;
+      } catch (error) {
+        console.warn(error);
+        storageInfo.textContent = "读取存储空间估算失败，但不影响继续录音保存。";
+      }
+    }
+
+    async function requestPersistentStorage() {
+      hideStorageMessage();
+
+      if (!navigator.storage || typeof navigator.storage.persist !== "function") {
+        showStorageMessage("当前浏览器不支持主动请求持久保存。", "error");
+        return;
+      }
+
+      try {
+        const granted = await navigator.storage.persist();
+        if (granted) {
+          showStorageMessage("浏览器已允许持久保存，本地录音被自动清理的概率会降低。", "success");
+        } else {
+          showStorageMessage("浏览器暂未允许持久保存。建议保留足够空间，并定期导出重要录音。", "error");
+        }
+      } catch (error) {
+        console.error(error);
+        showStorageMessage("请求持久保存失败，请稍后再试。", "error");
+      }
     }
 
     function createId() {
@@ -1225,13 +2592,28 @@
     }
 
     function formatDuration(totalSeconds) {
-      const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, "0");
-      const seconds = Math.floor(totalSeconds % 60).toString().padStart(2, "0");
+      const safeSeconds = Math.max(0, Number(totalSeconds) || 0);
+      const minutes = Math.floor(safeSeconds / 60).toString().padStart(2, "0");
+      const seconds = Math.floor(safeSeconds % 60).toString().padStart(2, "0");
       return `${minutes}:${seconds}`;
+    }
+
+    function formatDurationText(totalSeconds) {
+      const safeSeconds = Math.max(0, Number(totalSeconds) || 0);
+      return safeSeconds > 0 ? `时长 ${formatDuration(safeSeconds)}` : "时长未知";
+    }
+
+    function formatBytes(bytes) {
+      const safeBytes = Math.max(0, Number(bytes) || 0);
+      if (safeBytes < 1024) return `${safeBytes} B`;
+      if (safeBytes < 1024 * 1024) return `${(safeBytes / 1024).toFixed(1)} KB`;
+      if (safeBytes < 1024 * 1024 * 1024) return `${(safeBytes / 1024 / 1024).toFixed(1)} MB`;
+      return `${(safeBytes / 1024 / 1024 / 1024).toFixed(2)} GB`;
     }
 
     function formatTime(isoString) {
       const date = new Date(isoString);
+      if (Number.isNaN(date.getTime())) return "未知时间";
       return date.toLocaleString("zh-CN", {
         year: "numeric",
         month: "2-digit",
@@ -1239,6 +2621,17 @@
         hour: "2-digit",
         minute: "2-digit"
       });
+    }
+
+    function getStatusLabel(status) {
+      return STATUS_LABELS[status] || STATUS_LABELS.captured;
+    }
+
+    function getStatusClass(status) {
+      if (status === "chorded") return "status-chorded";
+      if (status === "arranged") return "status-arranged";
+      if (status === "mixed") return "status-mixed";
+      return "status-captured";
     }
 
     function showError(message, autoHide = true) {
@@ -1270,6 +2663,30 @@
       successBox.style.display = "none";
     }
 
+    function showDetailMessage(message, type) {
+      detailMessage.textContent = message;
+      detailMessage.className = `detail-message is-${type}`;
+      detailMessage.style.display = "block";
+    }
+
+    function hideDetailMessage() {
+      detailMessage.style.display = "none";
+      detailMessage.className = "detail-message";
+      detailMessage.textContent = "";
+    }
+
+    function showStorageMessage(message, type) {
+      storageMessage.textContent = message;
+      storageMessage.className = `storage-message is-${type}`;
+      storageMessage.style.display = "block";
+    }
+
+    function hideStorageMessage() {
+      storageMessage.style.display = "none";
+      storageMessage.className = "storage-message";
+      storageMessage.textContent = "";
+    }
+
     function escapeHtml(text) {
       return String(text || "")
         .replaceAll("&", "&amp;")
@@ -1279,6 +2696,5 @@
         .replaceAll("'", "&#039;");
     }
   </script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7939e04a4baf43c8b86a560f74aac60e","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
