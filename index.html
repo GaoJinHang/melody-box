@@ -655,6 +655,365 @@
       font-size: 13px;
     }
 
+
+    .production-step {
+      border-style: solid;
+      background: linear-gradient(180deg, #fffdf8 0%, #ffffff 100%);
+    }
+
+    .production-step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .production-status {
+      flex: 0 0 auto;
+      padding: 8px 10px;
+      border-radius: 999px;
+      color: #805100;
+      background: #fff3d8;
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .production-warning {
+      margin-top: 12px;
+      padding: 11px 12px;
+      border-radius: 14px;
+      color: #805100;
+      background: #fff8e8;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .production-warning[hidden] {
+      display: none;
+    }
+
+    .track-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .track-card {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    .track-card.is-disabled {
+      opacity: 0.72;
+    }
+
+    .track-card.is-solo {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(111, 92, 255, 0.11);
+    }
+
+    .track-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .track-title {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .track-description {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .track-controls {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .track-controls .outline-btn,
+    .track-controls .work-btn {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 13px;
+    }
+
+    .track-level {
+      margin-top: 12px;
+    }
+
+    .track-level-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .track-level input,
+    .rhythm-speed input {
+      width: 100%;
+      height: auto;
+      padding: 0;
+      accent-color: var(--primary);
+    }
+
+    .arrangement-playbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .arrangement-playbar .work-btn,
+    .arrangement-playbar .outline-btn {
+      width: auto;
+    }
+
+    .play-status {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .rhythm-step {
+      border-style: solid;
+      background: linear-gradient(180deg, #f9fbff 0%, #ffffff 100%);
+    }
+
+    .rhythm-topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .rhythm-speed {
+      flex: 0 0 210px;
+      padding: 12px;
+      border: 1px solid #dde7ff;
+      border-radius: 15px;
+      background: #f4f8ff;
+    }
+
+    .rhythm-speed label {
+      margin-top: 0;
+    }
+
+    .rhythm-speed-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .rhythm-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .rhythm-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    .rhythm-card.is-selected {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(111, 92, 255, 0.11);
+    }
+
+    .rhythm-card h4 {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .rhythm-card p {
+      flex: 1;
+      margin: 0;
+      color: #555;
+      font-size: 13px;
+    }
+
+    .rhythm-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .rhythm-actions .outline-btn,
+    .rhythm-actions .work-btn {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 13px;
+    }
+
+    .rhythm-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+
+    .mix-step {
+      border-style: solid;
+      background: linear-gradient(180deg, #fffaff 0%, #ffffff 100%);
+    }
+
+    .mix-step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .mix-status {
+      flex: 0 0 auto;
+      padding: 8px 10px;
+      border-radius: 999px;
+      color: #1f6f48;
+      background: #eefaf3;
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .preset-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .preset-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: #fff;
+    }
+
+    .preset-card h4 {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .preset-card p {
+      flex: 1;
+      margin: 0;
+      color: #555;
+      font-size: 12px;
+    }
+
+    .preset-card .outline-btn {
+      width: 100%;
+      padding: 9px 10px;
+      font-size: 13px;
+    }
+
+    .mix-slider-list {
+      display: grid;
+      gap: 13px;
+      margin-top: 14px;
+    }
+
+    .mix-slider-card {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    .mix-slider-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .mix-slider-top strong {
+      font-size: 15px;
+    }
+
+    .mix-value {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .mix-slider-card input {
+      width: 100%;
+      height: auto;
+      padding: 0;
+      accent-color: var(--primary);
+    }
+
+    .mix-slider-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .mix-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .mix-actions .work-btn,
+    .mix-actions .outline-btn {
+      width: auto;
+    }
+
+    .detail-stop-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .detail-stop-row .outline-btn {
+      width: auto;
+      padding: 9px 12px;
+      font-size: 13px;
+    }
+
+
     .detail-actions {
       display: flex;
       justify-content: flex-end;
@@ -712,6 +1071,52 @@
       .chord-list {
         grid-template-columns: 1fr;
       }
+
+
+      .production-step-header,
+      .rhythm-topline {
+        flex-direction: column;
+      }
+
+      .production-status,
+      .rhythm-speed {
+        width: 100%;
+      }
+
+      .track-head {
+        flex-direction: column;
+      }
+
+      .track-controls,
+      .rhythm-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .rhythm-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .arrangement-playbar .work-btn,
+      .arrangement-playbar .outline-btn,
+      .rhythm-footer .outline-btn,
+      .mix-actions .work-btn,
+      .mix-actions .outline-btn,
+      .detail-stop-row .outline-btn {
+        width: 100%;
+      }
+
+      .preset-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mix-step-header {
+        flex-direction: column;
+      }
+
+      .mix-status {
+        width: 100%;
+      }
+
     }
 
     @media (max-width: 520px) {
@@ -841,14 +1246,17 @@
       <div class="detail-head">
         <div>
           <h2 id="detailTitleText">旋律制作台</h2>
-          <span class="status-badge" id="detailStatusBadge">仅旋律</span>
+          <div class="detail-stop-row">
+            <span class="status-badge" id="detailStatusBadge">仅旋律</span>
+            <button class="outline-btn" id="detailStopAllSoundBtn" type="button">停止所有声音</button>
+          </div>
         </div>
         <button class="close-btn" id="closeDetailBtn" type="button" aria-label="关闭制作台">×</button>
       </div>
 
       <div class="detail-grid">
         <div class="detail-card">
-          <h3>原始录音播放器</h3>
+          <h3>第一步：原始旋律</h3>
           <audio id="detailAudio" controls></audio>
           <p class="hint" id="detailMetaText">暂无录音信息</p>
         </div>
@@ -898,7 +1306,7 @@
       <div class="next-step chord-step" id="chordStep">
         <div class="chord-step-header">
           <div>
-            <strong>下一步：推荐和弦底色</strong>
+            <strong>第二步：推荐和弦底色</strong>
             <p class="hint">这是根据心情和用途标签推荐的伴奏底色，不是严格扒谱。觉得不合适可以换一组。</p>
           </div>
           <button class="work-btn" id="recommendChordsBtn" type="button">推荐和弦底色</button>
@@ -912,6 +1320,108 @@
         </div>
 
         <div class="chord-list" id="chordRecommendationList" hidden></div>
+      </div>
+
+      <div class="next-step production-step" id="arrangementStep">
+        <div class="production-step-header">
+          <div>
+            <strong>第三步：加入编曲轨道</strong>
+            <p class="hint">像搭积木一样给旋律加三层声音：钢琴托住、低音撑住、弦乐铺开。</p>
+          </div>
+          <span class="production-status" id="arrangementStatus">等待选择和弦</span>
+        </div>
+
+        <div class="production-warning" id="arrangementWarning">请先选择一组和弦底色，再开启编曲轨道。</div>
+
+        <div class="track-list" id="arrangementTrackList"></div>
+
+        <div class="arrangement-playbar">
+          <button class="work-btn" id="playVocalArrangementBtn" type="button">播放人声 + 伴奏</button>
+          <button class="outline-btn" id="stopAllSoundBtn" type="button">停止所有声音</button>
+          <span class="play-status" id="arrangementPlayStatus">尚未播放</span>
+        </div>
+      </div>
+
+      <div class="next-step rhythm-step" id="rhythmStep">
+        <div class="rhythm-topline">
+          <div>
+            <strong>第四步：给旋律打气</strong>
+            <p class="hint">抒情歌的节奏不需要很吵，只需要给旋律一点呼吸和推动。</p>
+          </div>
+
+          <div class="rhythm-speed">
+            <label for="rhythmSpeedRange">速度快慢</label>
+            <input id="rhythmSpeedRange" type="range" min="0" max="2" step="1" value="1" />
+            <div class="rhythm-speed-labels">
+              <span>慢</span>
+              <span id="rhythmSpeedText">适中</span>
+              <span>稍快</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rhythm-grid" id="rhythmOptionGrid"></div>
+
+        <div class="rhythm-footer">
+          <button class="outline-btn" id="clearRhythmBtn" type="button">关闭节奏</button>
+          <span class="play-status" id="rhythmPreviewStatus">还没有选择节奏。</span>
+        </div>
+      </div>
+
+      <div class="next-step mix-step" id="mixStep">
+        <div class="mix-step-header">
+          <div>
+            <strong>第五步：氛围混音台</strong>
+            <p class="hint">给清唱和伴奏加一点空间、尾音和温度，让 Demo 更像一首歌。</p>
+          </div>
+          <span class="mix-status" id="mixStatusText">初始好听设置</span>
+        </div>
+
+        <div class="preset-grid" id="mixPresetGrid"></div>
+
+        <div class="mix-slider-list">
+          <div class="mix-slider-card">
+            <div class="mix-slider-top">
+              <strong>空间大小</strong>
+              <span class="mix-value" id="reverbValueText">35%</span>
+            </div>
+            <input id="reverbLevelRange" type="range" min="0" max="1" step="0.01" value="0.35" />
+            <div class="mix-slider-labels">
+              <span>小房间</span>
+              <span>山谷大教堂</span>
+            </div>
+          </div>
+
+          <div class="mix-slider-card">
+            <div class="mix-slider-top">
+              <strong>回声厚度</strong>
+              <span class="mix-value" id="delayValueText">12%</span>
+            </div>
+            <input id="delayLevelRange" type="range" min="0" max="1" step="0.01" value="0.12" />
+            <div class="mix-slider-labels">
+              <span>干净</span>
+              <span>尾音明显</span>
+            </div>
+          </div>
+
+          <div class="mix-slider-card">
+            <div class="mix-slider-top">
+              <strong>人声暖度</strong>
+              <span class="mix-value" id="warmthValueText">50%</span>
+            </div>
+            <input id="warmthLevelRange" type="range" min="0" max="1" step="0.01" value="0.5" />
+            <div class="mix-slider-labels">
+              <span>清晰</span>
+              <span>温暖</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mix-actions">
+          <button class="work-btn" id="playMixedVocalBtn" type="button">试听混音后效果</button>
+          <button class="outline-btn" id="resetMixBtn" type="button">恢复初始好听设置</button>
+          <span class="play-status" id="mixPreviewStatus">拖动滑块会自动保存。</span>
+        </div>
       </div>
     </section>
   </div>
@@ -1081,6 +1591,119 @@
       B: 59
     };
 
+    const ARRANGEMENT_TRACKS = [
+      {
+        id: "piano",
+        label: "钢琴铺底",
+        description: "用已选和弦弹出柔和的分解伴奏，让清唱不再孤单。"
+      },
+      {
+        id: "bass",
+        label: "低音支撑",
+        description: "跟着每个和弦的最低音慢慢走，让整段旋律更稳。"
+      },
+      {
+        id: "strings",
+        label: "柔和弦乐",
+        description: "像一层暖暖的空气铺在后面，增加空间感和情绪。"
+      }
+    ];
+
+    const DEFAULT_TRACK_SETTINGS = {
+      piano: { muted: false, solo: false, level: 0.76 },
+      bass: { muted: false, solo: false, level: 0.58 },
+      strings: { muted: false, solo: false, level: 0.44 }
+    };
+
+    const RHYTHM_OPTIONS = [
+      {
+        id: "fingerstyle",
+        name: "轻柔指弹",
+        description: "像轻轻拨弦，适合安静主歌。"
+      },
+      {
+        id: "light_tap",
+        name: "轻踩拍",
+        description: "只有很轻的沙锤和踩拍感，适合民谣。"
+      },
+      {
+        id: "ballad_rock",
+        name: "摇滚情歌",
+        description: "慢慢向前推，有一点点力量，但不会盖住人声。"
+      },
+      {
+        id: "piano_story",
+        name: "钢琴叙事",
+        description: "不加明显节拍，让旋律自由呼吸。"
+      }
+    ];
+
+    const RHYTHM_SPEEDS = {
+      slow: { label: "慢", beatSeconds: 0.78 },
+      medium: { label: "适中", beatSeconds: 0.62 },
+      fast: { label: "稍快", beatSeconds: 0.48 }
+    };
+
+    const RHYTHM_SPEED_VALUES = ["slow", "medium", "fast"];
+
+
+    const DEFAULT_MIX_SETTINGS = { reverbLevel: 0.35, delayLevel: 0.12, warmthLevel: 0.5 };
+
+    const MIX_PRESETS = [
+      {
+        id: "cn_piano_ballad",
+        name: "华语钢琴抒情",
+        description: "钢琴托住旋律，空间稍大，人声更温暖。",
+        instruments: { piano: true, bass: false, strings: true },
+        trackSettings: {
+          piano: { muted: false, solo: false, level: 0.78 },
+          bass: { muted: false, solo: false, level: 0.38 },
+          strings: { muted: false, solo: false, level: 0.42 }
+        },
+        rhythm: { type: "piano_story", speed: "medium" },
+        mix: { reverbLevel: 0.56, delayLevel: 0.16, warmthLevel: 0.68 }
+      },
+      {
+        id: "folk_guitar_feel",
+        name: "民谣木吉他感",
+        description: "伴奏更轻，空间少一点，人声更清楚。",
+        instruments: { piano: false, bass: true, strings: false },
+        trackSettings: {
+          piano: { muted: false, solo: false, level: 0.45 },
+          bass: { muted: false, solo: false, level: 0.32 },
+          strings: { muted: false, solo: false, level: 0.25 }
+        },
+        rhythm: { type: "fingerstyle", speed: "medium" },
+        mix: { reverbLevel: 0.24, delayLevel: 0.08, warmthLevel: 0.42 }
+      },
+      {
+        id: "cinematic_strings",
+        name: "电影感弦乐",
+        description: "弦乐和低音铺开，空间更大，画面感更强。",
+        instruments: { piano: true, bass: true, strings: true },
+        trackSettings: {
+          piano: { muted: false, solo: false, level: 0.55 },
+          bass: { muted: false, solo: false, level: 0.52 },
+          strings: { muted: false, solo: false, level: 0.72 }
+        },
+        rhythm: { type: "piano_story", speed: "slow" },
+        mix: { reverbLevel: 0.72, delayLevel: 0.28, warmthLevel: 0.62 }
+      },
+      {
+        id: "vocal_demo",
+        name: "清唱 Demo",
+        description: "关闭伴奏，只保留少量空间，让旋律本身更清楚。",
+        instruments: { piano: false, bass: false, strings: false },
+        trackSettings: {
+          piano: { muted: false, solo: false, level: 0.76 },
+          bass: { muted: false, solo: false, level: 0.58 },
+          strings: { muted: false, solo: false, level: 0.44 }
+        },
+        rhythm: { type: "", speed: "medium" },
+        mix: { reverbLevel: 0.18, delayLevel: 0.04, warmthLevel: 0.38 }
+      }
+    ];
+
     const form = document.querySelector("#melodyForm");
     const titleInput = document.querySelector("#title");
     const noteInput = document.querySelector("#note");
@@ -1119,6 +1742,29 @@
     const selectedChordSummary = document.querySelector("#selectedChordSummary");
     const chordPreviewStatus = document.querySelector("#chordPreviewStatus");
     const stopChordPreviewBtn = document.querySelector("#stopChordPreviewBtn");
+    const arrangementStatus = document.querySelector("#arrangementStatus");
+    const arrangementWarning = document.querySelector("#arrangementWarning");
+    const arrangementTrackList = document.querySelector("#arrangementTrackList");
+    const playVocalArrangementBtn = document.querySelector("#playVocalArrangementBtn");
+    const stopAllSoundBtn = document.querySelector("#stopAllSoundBtn");
+    const arrangementPlayStatus = document.querySelector("#arrangementPlayStatus");
+    const rhythmOptionGrid = document.querySelector("#rhythmOptionGrid");
+    const rhythmSpeedRange = document.querySelector("#rhythmSpeedRange");
+    const rhythmSpeedText = document.querySelector("#rhythmSpeedText");
+    const clearRhythmBtn = document.querySelector("#clearRhythmBtn");
+    const rhythmPreviewStatus = document.querySelector("#rhythmPreviewStatus");
+    const detailStopAllSoundBtn = document.querySelector("#detailStopAllSoundBtn");
+    const mixPresetGrid = document.querySelector("#mixPresetGrid");
+    const mixStatusText = document.querySelector("#mixStatusText");
+    const reverbLevelRange = document.querySelector("#reverbLevelRange");
+    const delayLevelRange = document.querySelector("#delayLevelRange");
+    const warmthLevelRange = document.querySelector("#warmthLevelRange");
+    const reverbValueText = document.querySelector("#reverbValueText");
+    const delayValueText = document.querySelector("#delayValueText");
+    const warmthValueText = document.querySelector("#warmthValueText");
+    const playMixedVocalBtn = document.querySelector("#playMixedVocalBtn");
+    const resetMixBtn = document.querySelector("#resetMixBtn");
+    const mixPreviewStatus = document.querySelector("#mixPreviewStatus");
 
     let db = null;
     let records = [];
@@ -1139,6 +1785,23 @@
     let chordPreviewNodes = [];
     let chordPreviewTimerId = null;
     let activeChordPreviewId = "";
+    let productionAudioContext = null;
+    let productionNodes = [];
+    let productionTimerId = null;
+    let productionTrackGains = {};
+    let productionPlaying = false;
+    let productionPlaybackRecordId = "";
+    let rhythmPreviewContext = null;
+    let rhythmPreviewNodes = [];
+    let rhythmPreviewTimerId = null;
+    let activeRhythmPreviewId = "";
+    let mixPreviewContext = null;
+    let mixPreviewNodes = [];
+    let mixPreviewSource = null;
+    let mixPreviewTimerId = null;
+    let mixPreviewPlaying = false;
+    let mixPreviewParts = null;
+    let mixSaveTimerId = null;
 
     let recorderMode = "";
     let audioContext = null;
@@ -1178,6 +1841,29 @@
       stopChordPreviewBtn.addEventListener("click", function () {
         stopChordPreview("已停止试听。");
       });
+      arrangementTrackList.addEventListener("click", handleArrangementTrackClick);
+      arrangementTrackList.addEventListener("input", handleArrangementTrackLevelInput);
+      playVocalArrangementBtn.addEventListener("click", playVocalWithArrangement);
+      stopAllSoundBtn.addEventListener("click", function () {
+        stopAllProductionSounds("已停止所有声音。");
+      });
+      rhythmOptionGrid.addEventListener("click", handleRhythmOptionClick);
+      rhythmSpeedRange.addEventListener("input", handleRhythmSpeedInput);
+      clearRhythmBtn.addEventListener("click", clearSelectedRhythm);
+      detailStopAllSoundBtn.addEventListener("click", function () {
+        stopAllProductionSounds("已停止所有声音。");
+      });
+      mixPresetGrid.addEventListener("click", handleMixPresetClick);
+      reverbLevelRange.addEventListener("input", handleMixSliderInput);
+      delayLevelRange.addEventListener("input", handleMixSliderInput);
+      warmthLevelRange.addEventListener("input", handleMixSliderInput);
+      playMixedVocalBtn.addEventListener("click", playMixedVocalPreview);
+      resetMixBtn.addEventListener("click", resetMixSettings);
+      detailAudio.addEventListener("ended", function () {
+        if (productionPlaying) {
+          stopProductionPlayback("播放结束。");
+        }
+      });
       detailOverlay.addEventListener("click", function (event) {
         if (event.target === detailOverlay) {
           closeProductionDesk();
@@ -1196,6 +1882,13 @@
         revokeAudioUrls();
         revokeDetailAudioUrl();
         stopChordPreview("已停止试听。");
+        stopProductionPlayback("已停止播放。");
+        stopRhythmPreview("已停止节奏试听。");
+        stopMixPreview("已停止混音试听。");
+        if (mixSaveTimerId) {
+          window.clearTimeout(mixSaveTimerId);
+          mixSaveTimerId = null;
+        }
       });
     }
 
@@ -1740,6 +2433,9 @@
       chordRecommendationList.hidden = true;
       updateSelectedChordSummary(record);
       updateChordPreviewUi();
+      updateArrangementUi(record);
+      updateRhythmUi(record);
+      updateMixUi(record);
 
       detailOverlay.classList.add("is-open");
       detailTitleInput.focus();
@@ -1747,9 +2443,16 @@
 
     function closeProductionDesk() {
       selectedRecordId = "";
+      if (mixSaveTimerId) {
+        window.clearTimeout(mixSaveTimerId);
+        mixSaveTimerId = null;
+      }
       detailOverlay.classList.remove("is-open");
       hideDetailMessage();
       stopChordPreview("已停止试听。");
+      stopProductionPlayback("已停止播放。");
+      stopRhythmPreview("已停止节奏试听。");
+      stopMixPreview("已停止混音试听。");
       currentChordRecommendations = [];
       chordRecommendationList.innerHTML = "";
       chordRecommendationList.hidden = true;
@@ -1802,6 +2505,9 @@
         renderRecords();
         updateStorageEstimate();
         updateSelectedChordSummary(normalizedSavedRecord);
+        updateArrangementUi(normalizedSavedRecord);
+        updateRhythmUi(normalizedSavedRecord);
+        updateMixUi(normalizedSavedRecord);
         if (!chordRecommendationList.hidden) {
           renderChordRecommendationsForRecord(normalizedSavedRecord);
         }
@@ -1931,6 +2637,9 @@
         renderRecords();
         updateStorageEstimate();
         updateSelectedChordSummary(normalizedSavedRecord);
+        updateArrangementUi(normalizedSavedRecord);
+        updateRhythmUi(normalizedSavedRecord);
+        updateMixUi(normalizedSavedRecord);
         renderChordRecommendationsForRecord(normalizedSavedRecord);
         detailStatusBadge.textContent = getStatusLabel(normalizedSavedRecord.status);
         detailStatusBadge.className = `status-badge ${getStatusClass(normalizedSavedRecord.status)}`;
@@ -2067,6 +2776,10 @@
       chordRecommendationList.querySelectorAll("[data-preview-id]").forEach(button => {
         button.textContent = button.dataset.previewId === activeChordPreviewId ? "正在试听" : "试听";
       });
+
+      if (typeof updateArrangementPlaybackButtons === "function") {
+        updateArrangementPlaybackButtons();
+      }
     }
 
     function getChordRecommendations(mood, usage) {
@@ -2143,6 +2856,1116 @@
         return status;
       }
       return "chorded";
+    }
+
+
+    function updateArrangementUi(record) {
+      const normalizedRecord = normalizeRecord(record);
+      const selectedChord = normalizedRecord.production.chords.selected;
+      const hasChord = Boolean(selectedChord);
+
+      arrangementWarning.hidden = hasChord;
+      arrangementStatus.textContent = hasChord
+        ? `当前和弦：${formatProgressionText(selectedChord)}`
+        : "等待选择和弦";
+
+      playVocalArrangementBtn.disabled = !hasChord;
+      arrangementTrackList.innerHTML = ARRANGEMENT_TRACKS.map(track => renderTrackCard(track, normalizedRecord, hasChord)).join("");
+      updateArrangementPlaybackButtons();
+    }
+
+    function renderTrackCard(track, record, hasChord) {
+      const instruments = record.production.instruments;
+      const settings = record.production.trackSettings[track.id] || DEFAULT_TRACK_SETTINGS[track.id];
+      const enabled = Boolean(instruments[track.id]);
+      const levelPercent = Math.round(clampNumber(settings.level, DEFAULT_TRACK_SETTINGS[track.id].level, 0, 1) * 100);
+      const cardClasses = [
+        "track-card",
+        enabled ? "" : "is-disabled",
+        settings.solo ? "is-solo" : ""
+      ].filter(Boolean).join(" ");
+
+      return `
+        <article class="${cardClasses}" data-track-id="${escapeHtml(track.id)}">
+          <div class="track-head">
+            <div>
+              <h4 class="track-title">${escapeHtml(track.label)}</h4>
+              <p class="track-description">${escapeHtml(track.description)}</p>
+            </div>
+            <span class="tag">${enabled ? "已开启" : "未开启"}</span>
+          </div>
+
+          <div class="track-controls">
+            <button class="${enabled ? "outline-btn" : "work-btn"}" type="button" data-track-action="toggle" ${hasChord ? "" : "disabled"}>${enabled ? "关闭" : "开启"}</button>
+            <button class="outline-btn" type="button" data-track-action="mute" ${hasChord ? "" : "disabled"}>${settings.muted ? "取消静音" : "静音"}</button>
+            <button class="outline-btn" type="button" data-track-action="solo" ${hasChord ? "" : "disabled"}>${settings.solo ? "取消独奏" : "独奏"}</button>
+          </div>
+
+          <div class="track-level">
+            <div class="track-level-row">
+              <span>大小</span>
+              <span>${levelPercent}%</span>
+            </div>
+            <input type="range" min="0" max="100" step="1" value="${levelPercent}" data-track-level="${escapeHtml(track.id)}" ${hasChord ? "" : "disabled"} />
+          </div>
+        </article>
+      `;
+    }
+
+    async function handleArrangementTrackClick(event) {
+      const actionButton = event.target.closest("[data-track-action]");
+      if (!actionButton) return;
+
+      const trackCard = actionButton.closest("[data-track-id]");
+      if (!trackCard) return;
+
+      const trackId = trackCard.dataset.trackId;
+      const action = actionButton.dataset.trackAction;
+      const record = await getCurrentDetailRecord();
+      if (!record) {
+        showDetailMessage("找不到这条录音，无法修改编曲轨道。", "error");
+        return;
+      }
+
+      if (!record.production.chords.selected) {
+        showDetailMessage("请先选择一组和弦底色，再开启编曲轨道。", "error");
+        return;
+      }
+
+      const production = cloneProduction(record.production);
+      if (action === "toggle") {
+        production.instruments[trackId] = !production.instruments[trackId];
+      }
+
+      if (action === "mute") {
+        production.trackSettings[trackId].muted = !production.trackSettings[trackId].muted;
+      }
+
+      if (action === "solo") {
+        production.trackSettings[trackId].solo = !production.trackSettings[trackId].solo;
+      }
+
+      await saveProductionForCurrentRecord(production, "编曲轨道已保存。");
+    }
+
+    function handleArrangementTrackLevelInput(event) {
+      const range = event.target.closest("[data-track-level]");
+      if (!range) return;
+
+      const trackId = range.dataset.trackLevel;
+      const level = clampNumber(Number(range.value) / 100, DEFAULT_TRACK_SETTINGS[trackId].level, 0, 1);
+      const levelText = range.closest(".track-level")?.querySelector(".track-level-row span:last-child");
+      if (levelText) {
+        levelText.textContent = `${Math.round(level * 100)}%`;
+      }
+
+      const record = records.find(item => item.id === selectedRecordId);
+      if (record) {
+        const normalizedRecord = normalizeRecord(record);
+        normalizedRecord.production.trackSettings[trackId].level = level;
+        records = records.map(item => item.id === normalizedRecord.id ? normalizedRecord : item);
+        applyTrackGainsLive(normalizedRecord.production);
+      }
+
+      window.clearTimeout(handleArrangementTrackLevelInput.timer);
+      handleArrangementTrackLevelInput.timer = window.setTimeout(async () => {
+        const latestRecord = await getCurrentDetailRecord();
+        if (!latestRecord) return;
+        const production = cloneProduction(latestRecord.production);
+        production.trackSettings[trackId].level = level;
+        await saveProductionForCurrentRecord(production, "轨道大小已保存。", { silent: true });
+      }, 260);
+    }
+
+    async function playVocalWithArrangement() {
+      hideDetailMessage();
+      stopRhythmPreview("已停止节奏试听。");
+      stopChordPreview("已停止和弦试听。");
+
+      const record = await getCurrentDetailRecord();
+      if (!record) {
+        showDetailMessage("找不到这条录音，无法播放。", "error");
+        return;
+      }
+
+      if (!record.production.chords.selected) {
+        showDetailMessage("请先选择一组和弦底色，再播放人声 + 伴奏。", "error");
+        return;
+      }
+
+      if (!(record.audioBlob instanceof Blob) || record.audioBlob.size <= 0) {
+        showDetailMessage("这条记录没有可播放的人声录音。", "error");
+        return;
+      }
+
+      stopProductionPlayback("正在准备播放……", { keepStatus: true });
+
+      try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) {
+          throw new Error("当前浏览器不支持 Web Audio API");
+        }
+
+        productionAudioContext = new AudioContextClass();
+        if (productionAudioContext.state === "suspended") {
+          await productionAudioContext.resume();
+        }
+
+        const duration = getPlaybackDuration(record);
+        const progression = splitProgression(record.production.chords.selected);
+        scheduleArrangementTracks(productionAudioContext, progression, record.production, duration);
+        if (record.production.rhythm.type) {
+          scheduleRhythmPattern(productionAudioContext, record.production.rhythm.type, record.production.rhythm.speed, duration, 0.2, productionAudioContext.destination, productionNodes);
+        }
+
+        detailAudio.pause();
+        detailAudio.currentTime = 0;
+        await detailAudio.play();
+
+        productionPlaying = true;
+        productionPlaybackRecordId = record.id;
+        arrangementPlayStatus.textContent = "正在播放人声 + 伴奏。";
+        updateArrangementPlaybackButtons();
+
+        productionTimerId = window.setTimeout(() => {
+          stopProductionPlayback("播放结束。");
+        }, Math.ceil(duration * 1000) + 650);
+      } catch (error) {
+        console.error(error);
+        stopProductionPlayback("播放失败。");
+        showDetailMessage("播放失败。请确认浏览器允许网页播放声音，然后再点一次播放。", "error");
+      }
+    }
+
+    function scheduleArrangementTracks(context, progression, production, duration) {
+      productionTrackGains = {};
+      const chordDuration = getBeatSeconds(production.rhythm.speed) * 4;
+
+      ARRANGEMENT_TRACKS.forEach(track => {
+        const gain = context.createGain();
+        gain.gain.setValueAtTime(0.0001, context.currentTime);
+        gain.connect(context.destination);
+        productionTrackGains[track.id] = gain;
+        productionNodes.push(gain);
+
+        if (track.id === "piano") {
+          schedulePianoTrack(context, progression, duration, chordDuration, gain);
+        }
+
+        if (track.id === "bass") {
+          scheduleBassTrack(context, progression, duration, chordDuration, gain);
+        }
+
+        if (track.id === "strings") {
+          scheduleStringsTrack(context, progression, duration, chordDuration, gain);
+        }
+      });
+
+      applyTrackGainsLive(production, true);
+    }
+
+    function schedulePianoTrack(context, progression, duration, chordDuration, destination) {
+      const start = context.currentTime + 0.08;
+      const step = chordDuration / 4;
+
+      for (let t = 0; t < duration + chordDuration; t += chordDuration) {
+        const chordName = progression[Math.floor(t / chordDuration) % progression.length];
+        const notes = buildChordMidiNotes(chordName).map(note => note + 12);
+        const pattern = [notes[0], notes[1], notes[2], notes[1], notes[2], notes[1], notes[0], notes[1]];
+
+        pattern.forEach((midiNote, index) => {
+          const noteTime = start + t + index * (step / 2);
+          if (noteTime < start + duration + 0.2) {
+            playArrangementPianoNote(context, midiNote, noteTime, Math.min(0.55, step * 0.92), destination);
+          }
+        });
+      }
+    }
+
+    function scheduleBassTrack(context, progression, duration, chordDuration, destination) {
+      const start = context.currentTime + 0.08;
+
+      for (let t = 0; t < duration + chordDuration; t += chordDuration) {
+        const chordName = progression[Math.floor(t / chordDuration) % progression.length];
+        const bassMidi = getBassMidiForChord(chordName);
+        const noteTime = start + t;
+        if (noteTime < start + duration + 0.2) {
+          playSustainedTone(context, bassMidi, noteTime, Math.min(chordDuration * 0.92, duration - t + 0.2), destination, {
+            type: "sine",
+            attack: 0.08,
+            peak: 0.3,
+            sustain: 0.18
+          });
+        }
+      }
+    }
+
+    function scheduleStringsTrack(context, progression, duration, chordDuration, destination) {
+      const start = context.currentTime + 0.08;
+
+      for (let t = 0; t < duration + chordDuration; t += chordDuration) {
+        const chordName = progression[Math.floor(t / chordDuration) % progression.length];
+        const notes = buildChordMidiNotes(chordName).map(note => note + 12);
+        notes.forEach(midiNote => {
+          const noteTime = start + t;
+          if (noteTime < start + duration + 0.2) {
+            playSustainedTone(context, midiNote, noteTime, Math.min(chordDuration * 1.05, duration - t + 0.4), destination, {
+              type: "triangle",
+              attack: 0.55,
+              peak: 0.12,
+              sustain: 0.085
+            });
+          }
+        });
+      }
+    }
+
+    function playArrangementPianoNote(context, midiNote, startTime, duration, destination) {
+      const frequency = midiToFrequency(midiNote);
+      const oscillator = context.createOscillator();
+      const overtone = context.createOscillator();
+      const noteGain = context.createGain();
+      const overtoneGain = context.createGain();
+
+      oscillator.type = "sine";
+      overtone.type = "triangle";
+      oscillator.frequency.setValueAtTime(frequency, startTime);
+      overtone.frequency.setValueAtTime(frequency * 2, startTime);
+
+      noteGain.gain.setValueAtTime(0.0001, startTime);
+      noteGain.gain.exponentialRampToValueAtTime(0.16, startTime + 0.025);
+      noteGain.gain.exponentialRampToValueAtTime(0.055, startTime + 0.2);
+      noteGain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+      overtoneGain.gain.setValueAtTime(0.0001, startTime);
+      overtoneGain.gain.exponentialRampToValueAtTime(0.025, startTime + 0.025);
+      overtoneGain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration * 0.75);
+
+      oscillator.connect(noteGain);
+      overtone.connect(overtoneGain);
+      noteGain.connect(destination);
+      overtoneGain.connect(destination);
+
+      oscillator.start(startTime);
+      overtone.start(startTime);
+      oscillator.stop(startTime + duration + 0.08);
+      overtone.stop(startTime + duration + 0.08);
+
+      productionNodes.push(oscillator, overtone, noteGain, overtoneGain);
+    }
+
+    function playSustainedTone(context, midiNote, startTime, duration, destination, options) {
+      const oscillator = context.createOscillator();
+      const gain = context.createGain();
+      const safeDuration = Math.max(0.18, duration);
+      const attack = Math.min(options.attack, safeDuration * 0.45);
+
+      oscillator.type = options.type;
+      oscillator.frequency.setValueAtTime(midiToFrequency(midiNote), startTime);
+
+      gain.gain.setValueAtTime(0.0001, startTime);
+      gain.gain.linearRampToValueAtTime(options.peak, startTime + attack);
+      gain.gain.linearRampToValueAtTime(options.sustain, startTime + Math.max(attack + 0.05, safeDuration * 0.45));
+      gain.gain.linearRampToValueAtTime(0.0001, startTime + safeDuration);
+
+      oscillator.connect(gain);
+      gain.connect(destination);
+
+      oscillator.start(startTime);
+      oscillator.stop(startTime + safeDuration + 0.12);
+
+      productionNodes.push(oscillator, gain);
+    }
+
+    function updateArrangementPlaybackButtons() {
+      if (!playVocalArrangementBtn || !stopAllSoundBtn) return;
+      playVocalArrangementBtn.textContent = productionPlaying ? "重新播放人声 + 伴奏" : "播放人声 + 伴奏";
+      const hasActiveSound = productionPlaying || Boolean(activeChordPreviewId) || Boolean(activeRhythmPreviewId) || mixPreviewPlaying;
+      stopAllSoundBtn.disabled = !hasActiveSound;
+      if (detailStopAllSoundBtn) {
+        detailStopAllSoundBtn.disabled = !hasActiveSound;
+      }
+      if (playMixedVocalBtn) {
+        playMixedVocalBtn.textContent = mixPreviewPlaying ? "重新试听混音后效果" : "试听混音后效果";
+      }
+    }
+
+    function stopAllProductionSounds(statusText = "已停止所有声音。") {
+      stopChordPreview("已停止和弦试听。");
+      stopRhythmPreview("已停止节奏试听。");
+      stopProductionPlayback(statusText);
+      stopMixPreview("已停止混音试听。");
+    }
+
+    function stopProductionPlayback(statusText = "已停止播放。", options = {}) {
+      if (productionTimerId) {
+        window.clearTimeout(productionTimerId);
+        productionTimerId = null;
+      }
+
+      productionNodes.forEach(node => {
+        try {
+          if (typeof node.stop === "function") {
+            node.stop(0);
+          }
+        } catch (error) {}
+
+        try {
+          if (typeof node.disconnect === "function") {
+            node.disconnect();
+          }
+        } catch (error) {}
+      });
+
+      productionNodes = [];
+      productionTrackGains = {};
+
+      if (productionAudioContext && productionAudioContext.state !== "closed") {
+        productionAudioContext.close().catch(() => {});
+      }
+
+      productionAudioContext = null;
+      productionPlaying = false;
+      productionPlaybackRecordId = "";
+
+      if (detailAudio && !detailAudio.paused) {
+        detailAudio.pause();
+      }
+
+      if (arrangementPlayStatus && !options.keepStatus) {
+        arrangementPlayStatus.textContent = statusText;
+      }
+
+      updateArrangementPlaybackButtons();
+    }
+
+    function applyTrackGainsLive(production, immediate = false) {
+      if (!productionAudioContext || !productionTrackGains) return;
+      const effectiveGains = getEffectiveTrackGains(production);
+      const now = productionAudioContext.currentTime;
+
+      Object.entries(productionTrackGains).forEach(([trackId, gainNode]) => {
+        if (!gainNode || !gainNode.gain) return;
+        const target = effectiveGains[trackId] || 0.0001;
+        try {
+          gainNode.gain.cancelScheduledValues(now);
+          if (immediate) {
+            gainNode.gain.setValueAtTime(Math.max(0.0001, target), now);
+          } else {
+            gainNode.gain.setTargetAtTime(Math.max(0.0001, target), now, 0.035);
+          }
+        } catch (error) {}
+      });
+    }
+
+    function getEffectiveTrackGains(production) {
+      const gains = {};
+      const enabledTracks = ARRANGEMENT_TRACKS.filter(track => production.instruments[track.id]);
+      const hasSolo = enabledTracks.some(track => production.trackSettings[track.id]?.solo);
+
+      ARRANGEMENT_TRACKS.forEach(track => {
+        const settings = production.trackSettings[track.id] || DEFAULT_TRACK_SETTINGS[track.id];
+        const enabled = Boolean(production.instruments[track.id]);
+        const activeBySolo = !hasSolo || settings.solo;
+        const allowed = enabled && activeBySolo && !settings.muted;
+        const base = track.id === "piano" ? 0.62 : track.id === "bass" ? 0.48 : 0.38;
+        gains[track.id] = allowed ? base * settings.level : 0;
+      });
+
+      return gains;
+    }
+
+    async function saveProductionForCurrentRecord(production, message, options = {}) {
+      if (!selectedRecordId) {
+        showDetailMessage("没有选中的录音，无法保存。", "error");
+        return null;
+      }
+
+      const storedRecord = await getRecord(selectedRecordId);
+      if (!storedRecord) {
+        showDetailMessage("找不到这条录音，无法保存。", "error");
+        return null;
+      }
+
+      const normalizedRecord = normalizeRecord(storedRecord);
+      const normalizedProduction = mergeProduction(production);
+      const updatedRecord = normalizeRecord({
+        ...normalizedRecord,
+        title: detailTitleInput.value.trim() || normalizedRecord.title,
+        note: detailNoteInput.value.trim(),
+        mood: detailMoodSelect.value,
+        usage: detailUsageSelect.value,
+        production: normalizedProduction,
+        status: options.forceStatus || getStatusAfterProductionChange(normalizedRecord.status, normalizedProduction),
+        updatedAt: new Date().toISOString()
+      });
+
+      await putRecord(updatedRecord);
+      const savedRecord = await getRecord(updatedRecord.id);
+      if (!savedRecord) {
+        showDetailMessage("保存后校验失败：没有从本地数据库读回这条记录。", "error");
+        return null;
+      }
+
+      const normalizedSavedRecord = normalizeRecord(savedRecord);
+      records = records.map(record => record.id === normalizedSavedRecord.id ? normalizedSavedRecord : record);
+      renderRecords();
+      updateStorageEstimate();
+      updateSelectedChordSummary(normalizedSavedRecord);
+      updateArrangementUi(normalizedSavedRecord);
+      updateRhythmUi(normalizedSavedRecord);
+      updateMixUi(normalizedSavedRecord);
+      applyMixSettingsLive(normalizedSavedRecord.production.mix);
+      detailStatusBadge.textContent = getStatusLabel(normalizedSavedRecord.status);
+      detailStatusBadge.className = `status-badge ${getStatusClass(normalizedSavedRecord.status)}`;
+      detailMetaText.textContent = `当前完成度：${getStatusLabel(normalizedSavedRecord.status)} · ${formatDurationText(normalizedSavedRecord.duration)} · ${formatBytes(normalizedSavedRecord.size)} · 更新于 ${formatTime(normalizedSavedRecord.updatedAt || normalizedSavedRecord.createdAt)}`;
+      applyTrackGainsLive(normalizedSavedRecord.production);
+
+      if (!options.silent) {
+        showDetailMessage(message || "制作设置已保存。", "success");
+      }
+
+      return normalizedSavedRecord;
+    }
+
+    function updateRhythmUi(record) {
+      const normalizedRecord = normalizeRecord(record);
+      const rhythm = normalizedRecord.production.rhythm;
+      const speedIndex = Math.max(0, RHYTHM_SPEED_VALUES.indexOf(normalizeRhythmSpeed(rhythm.speed)));
+
+      rhythmSpeedRange.value = String(speedIndex);
+      rhythmSpeedText.textContent = RHYTHM_SPEEDS[RHYTHM_SPEED_VALUES[speedIndex]].label;
+
+      rhythmOptionGrid.innerHTML = RHYTHM_OPTIONS.map(option => {
+        const selected = rhythm.type === option.id;
+        return `
+          <article class="rhythm-card ${selected ? "is-selected" : ""}">
+            <h4>${escapeHtml(option.name)}</h4>
+            <p>${escapeHtml(option.description)}</p>
+            <div class="rhythm-actions">
+              <button class="outline-btn" type="button" data-rhythm-preview="${escapeHtml(option.id)}">${activeRhythmPreviewId === option.id ? "正在试听" : "试听节奏"}</button>
+              <button class="work-btn" type="button" data-rhythm-select="${escapeHtml(option.id)}">${selected ? "已选用" : "选用"}</button>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      rhythmPreviewStatus.textContent = rhythm.type
+        ? `已选用：${getRhythmName(rhythm.type)} · 速度快慢：${RHYTHM_SPEEDS[rhythm.speed]?.label || "适中"}。`
+        : "还没有选择节奏。";
+      updateArrangementPlaybackButtons();
+    }
+
+    async function handleRhythmOptionClick(event) {
+      const previewButton = event.target.closest("[data-rhythm-preview]");
+      if (previewButton) {
+        const rhythmType = previewButton.dataset.rhythmPreview;
+        await previewRhythmPattern(rhythmType);
+        return;
+      }
+
+      const selectButton = event.target.closest("[data-rhythm-select]");
+      if (selectButton) {
+        const rhythmType = selectButton.dataset.rhythmSelect;
+        await selectRhythmPattern(rhythmType);
+      }
+    }
+
+    async function handleRhythmSpeedInput() {
+      const speed = RHYTHM_SPEED_VALUES[Number(rhythmSpeedRange.value)] || "medium";
+      rhythmSpeedText.textContent = RHYTHM_SPEEDS[speed].label;
+
+      const record = await getCurrentDetailRecord();
+      if (!record) return;
+
+      const production = cloneProduction(record.production);
+      production.rhythm.speed = speed;
+      await saveProductionForCurrentRecord(production, "速度快慢已保存。", { silent: true });
+    }
+
+    async function selectRhythmPattern(rhythmType) {
+      const record = await getCurrentDetailRecord();
+      if (!record) {
+        showDetailMessage("找不到这条录音，无法选择节奏。", "error");
+        return;
+      }
+
+      const production = cloneProduction(record.production);
+      production.rhythm.type = rhythmType;
+      production.rhythm.speed = RHYTHM_SPEED_VALUES[Number(rhythmSpeedRange.value)] || production.rhythm.speed || "medium";
+      await saveProductionForCurrentRecord(production, `已选用“${getRhythmName(rhythmType)}”。`);
+    }
+
+    async function clearSelectedRhythm() {
+      const record = await getCurrentDetailRecord();
+      if (!record) return;
+
+      stopRhythmPreview("已关闭节奏。");
+
+      const production = cloneProduction(record.production);
+      production.rhythm.type = "";
+      await saveProductionForCurrentRecord(production, "节奏已关闭。");
+    }
+
+    async function previewRhythmPattern(rhythmType) {
+      stopChordPreview("已停止和弦试听。");
+      stopProductionPlayback("已停止播放。");
+      stopRhythmPreview("正在准备节奏试听……", { keepStatus: true });
+
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) {
+        showDetailMessage("当前浏览器不支持网页内声音试听。", "error");
+        return;
+      }
+
+      rhythmPreviewContext = new AudioContextClass();
+      if (rhythmPreviewContext.state === "suspended") {
+        await rhythmPreviewContext.resume();
+      }
+
+      const speed = RHYTHM_SPEED_VALUES[Number(rhythmSpeedRange.value)] || "medium";
+      scheduleRhythmPattern(rhythmPreviewContext, rhythmType, speed, 7.8, 0.32, rhythmPreviewContext.destination, rhythmPreviewNodes);
+      activeRhythmPreviewId = rhythmType;
+      rhythmPreviewStatus.textContent = `正在试听：${getRhythmName(rhythmType)}。`;
+      updateRhythmPreviewButtons();
+
+      rhythmPreviewTimerId = window.setTimeout(() => {
+        stopRhythmPreview("节奏试听结束。可以换一个再听。");
+      }, 8400);
+    }
+
+    function scheduleRhythmPattern(context, rhythmType, speed, duration, amount, destination, nodeBucket) {
+      if (!rhythmType || rhythmType === "piano_story") {
+        scheduleFreeBreathPulse(context, duration, amount * 0.55, destination, nodeBucket);
+        return;
+      }
+
+      const start = context.currentTime + 0.08;
+      const beat = getBeatSeconds(speed);
+      const bar = beat * 4;
+
+      for (let t = 0; t < duration + beat; t += beat) {
+        const beatIndex = Math.round(t / beat) % 4;
+        const absolute = start + t;
+
+        if (rhythmType === "fingerstyle") {
+          if (beatIndex === 0 || beatIndex === 2) playSoftWood(context, absolute, amount * 0.45, destination, nodeBucket);
+          if (beatIndex === 1 || beatIndex === 3) playSoftShaker(context, absolute + beat * 0.48, amount * 0.28, destination, nodeBucket);
+        }
+
+        if (rhythmType === "light_tap") {
+          playSoftShaker(context, absolute, amount * 0.22, destination, nodeBucket);
+          if (beatIndex === 0 || beatIndex === 2) playSoftWood(context, absolute + beat * 0.02, amount * 0.28, destination, nodeBucket);
+        }
+
+        if (rhythmType === "ballad_rock") {
+          if (beatIndex === 0 || beatIndex === 2) playSoftKick(context, absolute, amount * 0.52, destination, nodeBucket);
+          if (beatIndex === 1 || beatIndex === 3) playSoftSnare(context, absolute, amount * 0.34, destination, nodeBucket);
+          playSoftShaker(context, absolute + beat * 0.5, amount * 0.16, destination, nodeBucket);
+        }
+      }
+
+      if (rhythmType === "fingerstyle") {
+        for (let t = 0; t < duration + bar; t += bar) {
+          playSoftShaker(context, start + t + beat * 3.45, amount * 0.23, destination, nodeBucket);
+        }
+      }
+    }
+
+    function scheduleFreeBreathPulse(context, duration, amount, destination, nodeBucket) {
+      const start = context.currentTime + 0.12;
+      for (let t = 0; t < duration; t += 2.8) {
+        playSoftWood(context, start + t, amount * 0.18, destination, nodeBucket, 520);
+      }
+    }
+
+    function playSoftWood(context, time, amount, destination, nodeBucket, frequency = 760) {
+      const oscillator = context.createOscillator();
+      const gain = context.createGain();
+
+      oscillator.type = "triangle";
+      oscillator.frequency.setValueAtTime(frequency, time);
+      gain.gain.setValueAtTime(0.0001, time);
+      gain.gain.exponentialRampToValueAtTime(Math.max(0.0001, amount), time + 0.006);
+      gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.11);
+
+      oscillator.connect(gain);
+      gain.connect(destination);
+      oscillator.start(time);
+      oscillator.stop(time + 0.13);
+      nodeBucket.push(oscillator, gain);
+    }
+
+    function playSoftKick(context, time, amount, destination, nodeBucket) {
+      const oscillator = context.createOscillator();
+      const gain = context.createGain();
+
+      oscillator.type = "sine";
+      oscillator.frequency.setValueAtTime(120, time);
+      oscillator.frequency.exponentialRampToValueAtTime(48, time + 0.13);
+      gain.gain.setValueAtTime(0.0001, time);
+      gain.gain.exponentialRampToValueAtTime(Math.max(0.0001, amount), time + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.22);
+
+      oscillator.connect(gain);
+      gain.connect(destination);
+      oscillator.start(time);
+      oscillator.stop(time + 0.24);
+      nodeBucket.push(oscillator, gain);
+    }
+
+    function playSoftSnare(context, time, amount, destination, nodeBucket) {
+      const buffer = createNoiseBuffer(context, 0.16);
+      const source = context.createBufferSource();
+      const filter = context.createBiquadFilter();
+      const gain = context.createGain();
+
+      source.buffer = buffer;
+      filter.type = "bandpass";
+      filter.frequency.setValueAtTime(1500, time);
+      filter.Q.setValueAtTime(0.9, time);
+      gain.gain.setValueAtTime(0.0001, time);
+      gain.gain.exponentialRampToValueAtTime(Math.max(0.0001, amount), time + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.16);
+
+      source.connect(filter);
+      filter.connect(gain);
+      gain.connect(destination);
+      source.start(time);
+      source.stop(time + 0.17);
+      nodeBucket.push(source, filter, gain);
+    }
+
+    function playSoftShaker(context, time, amount, destination, nodeBucket) {
+      const buffer = createNoiseBuffer(context, 0.09);
+      const source = context.createBufferSource();
+      const filter = context.createBiquadFilter();
+      const gain = context.createGain();
+
+      source.buffer = buffer;
+      filter.type = "highpass";
+      filter.frequency.setValueAtTime(3200, time);
+      gain.gain.setValueAtTime(0.0001, time);
+      gain.gain.exponentialRampToValueAtTime(Math.max(0.0001, amount), time + 0.006);
+      gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.085);
+
+      source.connect(filter);
+      filter.connect(gain);
+      gain.connect(destination);
+      source.start(time);
+      source.stop(time + 0.1);
+      nodeBucket.push(source, filter, gain);
+    }
+
+    function createNoiseBuffer(context, seconds) {
+      const length = Math.max(1, Math.floor(context.sampleRate * seconds));
+      const buffer = context.createBuffer(1, length, context.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let index = 0; index < length; index += 1) {
+        data[index] = (Math.random() * 2 - 1) * (1 - index / length);
+      }
+      return buffer;
+    }
+
+    function stopRhythmPreview(statusText = "还没有选择节奏。", options = {}) {
+      if (rhythmPreviewTimerId) {
+        window.clearTimeout(rhythmPreviewTimerId);
+        rhythmPreviewTimerId = null;
+      }
+
+      rhythmPreviewNodes.forEach(node => {
+        try {
+          if (typeof node.stop === "function") node.stop(0);
+        } catch (error) {}
+
+        try {
+          if (typeof node.disconnect === "function") node.disconnect();
+        } catch (error) {}
+      });
+
+      rhythmPreviewNodes = [];
+
+      if (rhythmPreviewContext && rhythmPreviewContext.state !== "closed") {
+        rhythmPreviewContext.close().catch(() => {});
+      }
+
+      rhythmPreviewContext = null;
+      activeRhythmPreviewId = "";
+
+      if (rhythmPreviewStatus && !options.keepStatus) {
+        rhythmPreviewStatus.textContent = statusText;
+      }
+
+      updateRhythmPreviewButtons();
+      updateArrangementPlaybackButtons();
+    }
+
+    function updateRhythmPreviewButtons() {
+      if (!rhythmOptionGrid) return;
+      rhythmOptionGrid.querySelectorAll("[data-rhythm-preview]").forEach(button => {
+        button.textContent = button.dataset.rhythmPreview === activeRhythmPreviewId ? "正在试听" : "试听节奏";
+      });
+      updateArrangementPlaybackButtons();
+    }
+
+    function getBeatSeconds(speed) {
+      const normalizedSpeed = normalizeRhythmSpeed(speed);
+      return RHYTHM_SPEEDS[normalizedSpeed].beatSeconds;
+    }
+
+    function getPlaybackDuration(record) {
+      const storedDuration = Number(record.duration);
+      if (Number.isFinite(storedDuration) && storedDuration > 1) return Math.min(180, storedDuration);
+
+      const elementDuration = Number(detailAudio.duration);
+      if (Number.isFinite(elementDuration) && elementDuration > 1) return Math.min(180, elementDuration);
+
+      return 16;
+    }
+
+    function splitProgression(value) {
+      const progression = normalizeProgressionValue(value).split("-").map(chord => chord.trim()).filter(Boolean);
+      return progression.length ? progression : ["C", "Am", "F", "G"];
+    }
+
+    function getBassMidiForChord(chordName) {
+      let root = buildChordMidiNotes(chordName)[0];
+      while (root > 47) root -= 12;
+      while (root < 35) root += 12;
+      return root;
+    }
+
+
+    function updateMixUi(record) {
+      const normalizedRecord = normalizeRecord(record);
+      const mix = normalizedRecord.production.mix;
+      setMixSliderValues(mix);
+      renderMixPresets();
+      updateMixStatusText(mix);
+      updateArrangementPlaybackButtons();
+    }
+
+    function renderMixPresets() {
+      if (!mixPresetGrid) return;
+      mixPresetGrid.innerHTML = MIX_PRESETS.map(preset => `
+        <article class="preset-card">
+          <h4>${escapeHtml(preset.name)}</h4>
+          <p>${escapeHtml(preset.description)}</p>
+          <button class="outline-btn" type="button" data-mix-preset="${escapeHtml(preset.id)}">套用预设</button>
+        </article>
+      `).join("");
+    }
+
+    function setMixSliderValues(mix) {
+      const normalizedMix = normalizeMixSettings(mix);
+      reverbLevelRange.value = String(normalizedMix.reverbLevel);
+      delayLevelRange.value = String(normalizedMix.delayLevel);
+      warmthLevelRange.value = String(normalizedMix.warmthLevel);
+      updateMixValueLabels(normalizedMix);
+    }
+
+    function updateMixValueLabels(mix = getMixValuesFromUi()) {
+      const normalizedMix = normalizeMixSettings(mix);
+      reverbValueText.textContent = `${Math.round(normalizedMix.reverbLevel * 100)}%`;
+      delayValueText.textContent = `${Math.round(normalizedMix.delayLevel * 100)}%`;
+      warmthValueText.textContent = `${Math.round(normalizedMix.warmthLevel * 100)}%`;
+      updateMixStatusText(normalizedMix);
+    }
+
+    function updateMixStatusText(mix = getMixValuesFromUi()) {
+      const normalizedMix = normalizeMixSettings(mix);
+      const closeToDefault =
+        Math.abs(normalizedMix.reverbLevel - DEFAULT_MIX_SETTINGS.reverbLevel) < 0.015 &&
+        Math.abs(normalizedMix.delayLevel - DEFAULT_MIX_SETTINGS.delayLevel) < 0.015 &&
+        Math.abs(normalizedMix.warmthLevel - DEFAULT_MIX_SETTINGS.warmthLevel) < 0.015;
+      mixStatusText.textContent = closeToDefault ? "初始好听设置" : "已上色";
+    }
+
+    function getMixValuesFromUi() {
+      return normalizeMixSettings({
+        reverbLevel: Number(reverbLevelRange.value),
+        delayLevel: Number(delayLevelRange.value),
+        warmthLevel: Number(warmthLevelRange.value)
+      });
+    }
+
+    function normalizeMixSettings(mix) {
+      const input = mix && typeof mix === "object" ? mix : {};
+      return {
+        reverbLevel: clampNumber(input.reverbLevel, DEFAULT_MIX_SETTINGS.reverbLevel, 0, 1),
+        delayLevel: clampNumber(input.delayLevel, DEFAULT_MIX_SETTINGS.delayLevel, 0, 1),
+        warmthLevel: clampNumber(input.warmthLevel, DEFAULT_MIX_SETTINGS.warmthLevel, 0, 1)
+      };
+    }
+
+    async function handleMixSliderInput() {
+      const mix = getMixValuesFromUi();
+      updateMixValueLabels(mix);
+      applyMixSettingsLive(mix);
+
+      if (mixSaveTimerId) {
+        window.clearTimeout(mixSaveTimerId);
+      }
+
+      mixSaveTimerId = window.setTimeout(async () => {
+        const record = await getCurrentDetailRecord();
+        if (!record) return;
+        const production = cloneProduction(record.production);
+        production.mix = mix;
+        await saveProductionForCurrentRecord(production, "氛围混音台设置已保存。", { silent: true, forceStatus: "mixed" });
+        mixPreviewStatus.textContent = mixPreviewPlaying ? "正在试听，滑块变化已保存。" : "拖动滑块会自动保存。";
+      }, 420);
+    }
+
+    async function playMixedVocalPreview() {
+      hideDetailMessage();
+      stopChordPreview("已停止和弦试听。");
+      stopRhythmPreview("已停止节奏试听。");
+      stopProductionPlayback("已停止播放。");
+      stopMixPreview("正在准备混音试听……", { keepStatus: true });
+
+      const record = await getCurrentDetailRecord();
+      if (!record) {
+        showDetailMessage("找不到这条录音，无法试听。", "error");
+        return;
+      }
+
+      if (!(record.audioBlob instanceof Blob) || record.audioBlob.size <= 0) {
+        showDetailMessage("这条记录没有可播放的人声录音。", "error");
+        return;
+      }
+
+      try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) {
+          throw new Error("当前浏览器不支持网页内声音试听。");
+        }
+
+        mixPreviewContext = new AudioContextClass();
+        if (mixPreviewContext.state === "suspended") {
+          await mixPreviewContext.resume();
+        }
+
+        const arrayBuffer = await record.audioBlob.arrayBuffer();
+        const audioBuffer = await mixPreviewContext.decodeAudioData(arrayBuffer.slice(0));
+        const source = mixPreviewContext.createBufferSource();
+        source.buffer = audioBuffer;
+
+        const filterNode = mixPreviewContext.createBiquadFilter();
+        filterNode.type = "lowpass";
+
+        const delayNode = mixPreviewContext.createDelay(1.2);
+        const delayFeedback = mixPreviewContext.createGain();
+        const delayWet = mixPreviewContext.createGain();
+
+        const convolver = mixPreviewContext.createConvolver();
+        convolver.buffer = createSimpleSpaceBuffer(mixPreviewContext, 2.8);
+        const reverbWet = mixPreviewContext.createGain();
+        const dryGain = mixPreviewContext.createGain();
+        const masterGain = mixPreviewContext.createGain();
+
+        masterGain.gain.value = 0.88;
+        dryGain.gain.value = 0.86;
+
+        source.connect(filterNode);
+        filterNode.connect(dryGain);
+        dryGain.connect(masterGain);
+
+        filterNode.connect(delayNode);
+        delayNode.connect(delayWet);
+        delayWet.connect(convolver);
+        convolver.connect(reverbWet);
+        reverbWet.connect(masterGain);
+
+        delayNode.connect(delayFeedback);
+        delayFeedback.connect(delayNode);
+        masterGain.connect(mixPreviewContext.destination);
+
+        mixPreviewNodes = [filterNode, delayNode, delayFeedback, delayWet, convolver, reverbWet, dryGain, masterGain];
+        mixPreviewSource = source;
+        mixPreviewParts = { filterNode, delayNode, delayFeedback, delayWet, reverbWet, dryGain };
+        applyMixSettingsLive(getMixValuesFromUi(), true);
+
+        source.onended = function () {
+          if (mixPreviewPlaying) {
+            stopMixPreview("混音试听结束。");
+          }
+        };
+
+        source.start();
+        mixPreviewPlaying = true;
+        mixPreviewStatus.textContent = "正在试听混音后效果。拖动滑块可以改变正在播放的声音。";
+        updateArrangementPlaybackButtons();
+
+        const safeDuration = Math.max(1, Math.min(audioBuffer.duration || record.duration || 16, 180));
+        mixPreviewTimerId = window.setTimeout(() => {
+          stopMixPreview("混音试听结束。");
+        }, Math.ceil((safeDuration + 0.35) * 1000));
+      } catch (error) {
+        console.error(error);
+        stopMixPreview("混音试听失败。");
+        showDetailMessage("混音试听失败。请确认浏览器允许网页播放声音，然后再试一次。", "error");
+      }
+    }
+
+    function applyMixSettingsLive(mix, immediate = false) {
+      if (!mixPreviewContext || !mixPreviewParts) return;
+
+      const normalizedMix = normalizeMixSettings(mix);
+      const now = mixPreviewContext.currentTime;
+      const rampTime = immediate ? 0.001 : 0.045;
+      const targetFrequency = 12500 - normalizedMix.warmthLevel * 7200;
+      const delayAmount = normalizedMix.delayLevel;
+      const spaceAmount = normalizedMix.reverbLevel;
+
+      safeSetParam(mixPreviewParts.filterNode.frequency, targetFrequency, now, rampTime);
+      safeSetParam(mixPreviewParts.filterNode.Q, 0.58 + normalizedMix.warmthLevel * 0.6, now, rampTime);
+      safeSetParam(mixPreviewParts.delayNode.delayTime, 0.12 + delayAmount * 0.34, now, rampTime);
+      safeSetParam(mixPreviewParts.delayWet.gain, delayAmount * 0.44, now, rampTime);
+      safeSetParam(mixPreviewParts.delayFeedback.gain, delayAmount * 0.34, now, rampTime);
+      safeSetParam(mixPreviewParts.reverbWet.gain, spaceAmount * 0.58, now, rampTime);
+      safeSetParam(mixPreviewParts.dryGain.gain, 0.9 - spaceAmount * 0.18, now, rampTime);
+    }
+
+    function safeSetParam(param, value, now, rampTime) {
+      if (!param) return;
+      try {
+        param.cancelScheduledValues(now);
+        param.setTargetAtTime(value, now, rampTime);
+      } catch (error) {}
+    }
+
+    function createSimpleSpaceBuffer(context, seconds) {
+      const sampleRate = context.sampleRate;
+      const length = Math.floor(sampleRate * seconds);
+      const buffer = context.createBuffer(2, length, sampleRate);
+
+      for (let channel = 0; channel < buffer.numberOfChannels; channel += 1) {
+        const data = buffer.getChannelData(channel);
+        for (let i = 0; i < length; i += 1) {
+          const decay = Math.pow(1 - i / length, 2.4);
+          data[i] = (Math.random() * 2 - 1) * decay * 0.42;
+        }
+      }
+
+      return buffer;
+    }
+
+    function stopMixPreview(statusText = "尚未试听混音后效果。", options = {}) {
+      if (mixPreviewTimerId) {
+        window.clearTimeout(mixPreviewTimerId);
+        mixPreviewTimerId = null;
+      }
+
+      if (mixPreviewSource) {
+        try {
+          mixPreviewSource.onended = null;
+          mixPreviewSource.stop(0);
+        } catch (error) {}
+        try {
+          mixPreviewSource.disconnect();
+        } catch (error) {}
+      }
+
+      mixPreviewNodes.forEach(node => {
+        try {
+          if (typeof node.disconnect === "function") {
+            node.disconnect();
+          }
+        } catch (error) {}
+      });
+
+      if (mixPreviewContext && mixPreviewContext.state !== "closed") {
+        mixPreviewContext.close().catch(() => {});
+      }
+
+      mixPreviewContext = null;
+      mixPreviewNodes = [];
+      mixPreviewSource = null;
+      mixPreviewParts = null;
+      mixPreviewPlaying = false;
+
+      if (!options.keepStatus && mixPreviewStatus) {
+        mixPreviewStatus.textContent = statusText;
+      }
+
+      updateArrangementPlaybackButtons();
+    }
+
+    async function resetMixSettings() {
+      const record = await getCurrentDetailRecord();
+      if (!record) return;
+
+      const production = cloneProduction(record.production);
+      production.mix = { ...DEFAULT_MIX_SETTINGS };
+      setMixSliderValues(production.mix);
+      applyMixSettingsLive(production.mix, true);
+      await saveProductionForCurrentRecord(production, "已恢复初始好听设置。", { forceStatus: "mixed" });
+      mixPreviewStatus.textContent = mixPreviewPlaying ? "已恢复初始好听设置，正在试听。" : "已恢复初始好听设置。";
+    }
+
+    async function handleMixPresetClick(event) {
+      const presetButton = event.target.closest("[data-mix-preset]");
+      if (!presetButton) return;
+
+      const preset = MIX_PRESETS.find(item => item.id === presetButton.dataset.mixPreset);
+      if (!preset) return;
+
+      const record = await getCurrentDetailRecord();
+      if (!record) return;
+
+      const production = cloneProduction(record.production);
+      production.instruments = { ...production.instruments, ...preset.instruments };
+      production.trackSettings = mergePresetTrackSettings(production.trackSettings, preset.trackSettings);
+      production.rhythm = {
+        type: preset.rhythm.type,
+        speed: normalizeRhythmSpeed(preset.rhythm.speed)
+      };
+      production.mix = normalizeMixSettings(preset.mix);
+
+      setMixSliderValues(production.mix);
+      applyMixSettingsLive(production.mix, true);
+      const savedRecord = await saveProductionForCurrentRecord(production, `已套用“${preset.name}”。`, { forceStatus: "mixed" });
+      if (savedRecord) {
+        updateArrangementUi(savedRecord);
+        updateRhythmUi(savedRecord);
+        updateMixUi(savedRecord);
+      }
+    }
+
+    function mergePresetTrackSettings(currentSettings, presetSettings) {
+      const merged = {
+        piano: mergeTrackSetting(currentSettings?.piano, DEFAULT_TRACK_SETTINGS.piano),
+        bass: mergeTrackSetting(currentSettings?.bass, DEFAULT_TRACK_SETTINGS.bass),
+        strings: mergeTrackSetting(currentSettings?.strings, DEFAULT_TRACK_SETTINGS.strings)
+      };
+
+      Object.keys(presetSettings || {}).forEach(trackId => {
+        if (merged[trackId]) {
+          merged[trackId] = mergeTrackSetting(presetSettings[trackId], merged[trackId]);
+        }
+      });
+
+      return merged;
+    }
+
+
+    function cloneProduction(production) {
+      return mergeProduction(JSON.parse(JSON.stringify(production || createDefaultProduction())));
+    }
+
+    function getRhythmName(rhythmType) {
+      const option = RHYTHM_OPTIONS.find(item => item.id === rhythmType);
+      return option ? option.name : "未选择";
+    }
+
+    function getStatusAfterProductionChange(currentStatus, production) {
+      if (currentStatus === "mixed") return currentStatus;
+      const hasInstrument = ARRANGEMENT_TRACKS.some(track => production.instruments[track.id]);
+      const hasRhythm = Boolean(production.rhythm.type);
+      if (hasInstrument || hasRhythm) return "arranged";
+      if (production.chords.selected) return "chorded";
+      return currentStatus || "captured";
     }
 
     function discardCurrentAudio(showMessage = true) {
@@ -2463,6 +4286,7 @@
       const instruments = production.instruments || {};
       const rhythm = production.rhythm || {};
       const mix = production.mix || {};
+      const trackSettings = production.trackSettings || {};
 
       return !Object.prototype.hasOwnProperty.call(record, "duration") ||
         !Object.prototype.hasOwnProperty.call(record, "size") ||
@@ -2474,6 +4298,9 @@
         !Object.prototype.hasOwnProperty.call(instruments, "piano") ||
         !Object.prototype.hasOwnProperty.call(instruments, "bass") ||
         !Object.prototype.hasOwnProperty.call(instruments, "strings") ||
+        !Object.prototype.hasOwnProperty.call(trackSettings, "piano") ||
+        !Object.prototype.hasOwnProperty.call(trackSettings, "bass") ||
+        !Object.prototype.hasOwnProperty.call(trackSettings, "strings") ||
         !Object.prototype.hasOwnProperty.call(rhythm, "type") ||
         !Object.prototype.hasOwnProperty.call(rhythm, "speed") ||
         !Object.prototype.hasOwnProperty.call(mix, "reverbLevel") ||
@@ -2485,6 +4312,11 @@
       return {
         chords: { selected: "", source: "" },
         instruments: { piano: false, bass: false, strings: false },
+        trackSettings: {
+          piano: { ...DEFAULT_TRACK_SETTINGS.piano },
+          bass: { ...DEFAULT_TRACK_SETTINGS.bass },
+          strings: { ...DEFAULT_TRACK_SETTINGS.strings }
+        },
         rhythm: { type: "", speed: "medium" },
         mix: { reverbLevel: 0.35, delayLevel: 0.12, warmthLevel: 0.5 }
       };
@@ -2495,6 +4327,7 @@
       const input = production && typeof production === "object" ? production : {};
       const chords = input.chords && typeof input.chords === "object" ? input.chords : {};
       const instruments = input.instruments && typeof input.instruments === "object" ? input.instruments : {};
+      const trackSettings = input.trackSettings && typeof input.trackSettings === "object" ? input.trackSettings : {};
       const rhythm = input.rhythm && typeof input.rhythm === "object" ? input.rhythm : {};
       const mix = input.mix && typeof input.mix === "object" ? input.mix : {};
 
@@ -2508,16 +4341,40 @@
           bass: Boolean(instruments.bass ?? defaults.instruments.bass),
           strings: Boolean(instruments.strings ?? defaults.instruments.strings)
         },
+        trackSettings: {
+          piano: mergeTrackSetting(trackSettings.piano, defaults.trackSettings.piano),
+          bass: mergeTrackSetting(trackSettings.bass, defaults.trackSettings.bass),
+          strings: mergeTrackSetting(trackSettings.strings, defaults.trackSettings.strings)
+        },
         rhythm: {
           type: String(rhythm.type ?? defaults.rhythm.type),
-          speed: String(rhythm.speed ?? defaults.rhythm.speed)
+          speed: normalizeRhythmSpeed(rhythm.speed ?? defaults.rhythm.speed)
         },
-        mix: {
-          reverbLevel: getSafeNumber(mix.reverbLevel, defaults.mix.reverbLevel),
-          delayLevel: getSafeNumber(mix.delayLevel, defaults.mix.delayLevel),
-          warmthLevel: getSafeNumber(mix.warmthLevel, defaults.mix.warmthLevel)
-        }
+        mix: normalizeMixSettings({
+          reverbLevel: mix.reverbLevel ?? defaults.mix.reverbLevel,
+          delayLevel: mix.delayLevel ?? defaults.mix.delayLevel,
+          warmthLevel: mix.warmthLevel ?? defaults.mix.warmthLevel
+        })
       };
+    }
+
+    function mergeTrackSetting(setting, fallback) {
+      const input = setting && typeof setting === "object" ? setting : {};
+      return {
+        muted: Boolean(input.muted ?? fallback.muted),
+        solo: Boolean(input.solo ?? fallback.solo),
+        level: clampNumber(input.level, fallback.level, 0, 1)
+      };
+    }
+
+    function clampNumber(value, fallback, min, max) {
+      const number = Number(value);
+      if (!Number.isFinite(number)) return fallback;
+      return Math.min(max, Math.max(min, number));
+    }
+
+    function normalizeRhythmSpeed(value) {
+      return RHYTHM_SPEEDS[value] ? value : "medium";
     }
 
     function getSafeNumber(value, fallback) {
